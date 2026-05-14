@@ -425,9 +425,9 @@ const heroFloatingPills = [
 
 function HeroPhonePreview() {
   return (
-    <div className="relative mx-auto flex w-full max-w-[340px] items-center justify-center py-3 sm:max-w-[404px] sm:py-5">
-      <div className="pointer-events-none absolute inset-x-10 top-10 h-52 rounded-full bg-emerald-300/25 blur-3xl" />
-      <div className="pointer-events-none absolute inset-x-20 bottom-6 h-40 rounded-full bg-cyan-200/25 blur-3xl" />
+    <div className="relative mx-auto flex w-full max-w-[350px] items-center justify-center py-3 sm:max-w-[404px] sm:py-5">
+      <div className="pointer-events-none absolute inset-x-10 top-10 h-44 rounded-full bg-emerald-300/25 blur-3xl sm:h-52" />
+      <div className="pointer-events-none absolute inset-x-20 bottom-6 h-32 rounded-full bg-cyan-200/25 blur-3xl sm:h-40" />
 
       {heroFloatingPills.map((pill, index) => (
         <div
@@ -444,53 +444,53 @@ function HeroPhonePreview() {
         </div>
       ))}
 
-      <div className="relative z-10 w-[210px] sm:w-[296px] lg:w-[308px]">
+      <div className="relative z-10 w-[232px] sm:w-[296px] lg:w-[308px]">
         <div className="absolute -left-[3px] top-24 h-14 w-[3px] rounded-r-full bg-slate-900/80" />
         <div className="absolute -left-[3px] top-[10.5rem] h-9 w-[3px] rounded-r-full bg-slate-900/80" />
         <div className="absolute -right-[3px] top-32 h-20 w-[3px] rounded-l-full bg-slate-900/80" />
 
-        <div className="relative rounded-[3.15rem] bg-[#07090c] p-[8px] shadow-[0_45px_120px_-45px_rgba(15,23,42,0.85)] ring-1 ring-slate-950/10">
-          <div className="absolute left-1/2 top-3 z-30 h-[1.875rem] w-[6.5rem] -translate-x-1/2 rounded-full bg-black shadow-[inset_0_1px_2px_rgba(255,255,255,0.08)]" />
-          <div className="absolute left-1/2 top-[1.05rem] z-40 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-slate-950 ring-[3px] ring-black">
+        <div className="relative rounded-[2.65rem] bg-[#07090c] p-[7px] shadow-[0_45px_120px_-45px_rgba(15,23,42,0.85)] ring-1 ring-slate-950/10 sm:rounded-[3.15rem] sm:p-[8px]">
+          <div className="absolute left-1/2 top-2.5 z-30 h-[1.55rem] w-[5.3rem] -translate-x-1/2 rounded-full bg-black shadow-[inset_0_1px_2px_rgba(255,255,255,0.08)] sm:top-3 sm:h-[1.875rem] sm:w-[6.5rem]" />
+          <div className="absolute left-1/2 top-[0.95rem] z-40 h-2 w-2 -translate-x-1/2 rounded-full bg-slate-950 ring-[3px] ring-black sm:top-[1.05rem] sm:h-2.5 sm:w-2.5">
             <div className="h-full w-full rounded-full bg-emerald-400/35" />
           </div>
 
-          <div className="relative overflow-hidden rounded-[2.75rem] border border-white/10 bg-[linear-gradient(180deg,#f9fffd_0%,#eef8f4_55%,#f8fbff_100%)]">
+          <div className="relative overflow-hidden rounded-[2.3rem] border border-white/10 bg-[linear-gradient(180deg,#f9fffd_0%,#eef8f4_55%,#f8fbff_100%)] sm:rounded-[2.75rem]">
             <div className="hero-screen-shine pointer-events-none absolute inset-y-0 -left-1/3 w-1/2 rotate-12 bg-white/35 blur-2xl" />
 
-            <div className="flex items-center justify-between px-[1.125rem] pb-2.5 pt-[3rem]">
+            <div className="flex items-center justify-between px-3.5 pb-2 pt-[2.5rem] sm:px-[1.125rem] sm:pb-2.5 sm:pt-[3rem]">
               <div className="flex items-center gap-3">
-                <div className="flex size-9 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 text-xs font-semibold text-white shadow-lg shadow-emerald-500/30">
+                <div className="flex size-8 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 text-[11px] font-semibold text-white shadow-lg shadow-emerald-500/30 sm:size-9 sm:text-xs">
                   LF
                 </div>
                 <div>
-                  <p className="text-[13px] font-semibold text-slate-900">LeadFlow AI</p>
-                  <p className="text-xs text-emerald-700">3 mensagens novas agora</p>
+                  <p className="text-[12px] font-semibold text-slate-900 sm:text-[13px]">LeadFlow AI</p>
+                  <p className="text-[11px] text-emerald-700 sm:text-xs">3 mensagens novas agora</p>
                 </div>
               </div>
-              <div className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
+              <div className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700 sm:px-3 sm:text-[11px] sm:tracking-[0.2em]">
                 Online
               </div>
             </div>
 
-            <div className="px-4 pb-3.5">
-              <div className="rounded-[1.55rem] border border-white/70 bg-white/80 p-3 shadow-[0_18px_50px_-30px_rgba(15,23,42,0.25)]">
+            <div className="px-3.5 pb-3 sm:px-4 sm:pb-3.5">
+              <div className="rounded-[1.35rem] border border-white/70 bg-white/80 p-2.5 shadow-[0_18px_50px_-30px_rgba(15,23,42,0.25)] sm:rounded-[1.55rem] sm:p-3">
                 <div className="flex items-center justify-between gap-3">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400 sm:text-xs sm:tracking-[0.18em]">
                       Pipeline ao vivo
                     </p>
-                    <p className="mt-1 text-[14px] font-semibold text-slate-900">
+                    <p className="mt-1 text-[13px] font-semibold text-slate-900 sm:text-[14px]">
                       8 leads quentes hoje
                     </p>
                   </div>
-                  <div className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
+                  <div className="rounded-full bg-emerald-100 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 sm:px-3 sm:text-xs">
                     +23%
                   </div>
                 </div>
               </div>
 
-              <div className="relative mt-3 h-[8.5rem] sm:h-[16.5rem]">
+              <div className="relative mt-3 h-[5.2rem] sm:h-[16.5rem]">
                 {heroMessages.map((message, index) => (
                   <div
                     key={message.title}
@@ -498,7 +498,7 @@ function HeroPhonePreview() {
                       message.side === "right"
                         ? "border-emerald-400/30 bg-emerald-500 text-white"
                         : "border-white/80 bg-white/92 text-slate-900"
-                    } ${index >= 2 ? "hidden sm:block" : ""}`}
+                    } ${index >= 1 ? "hidden sm:block" : ""}`}
                     style={{ animationDelay: `${index * 1.15}s` }}
                   >
                     <div className="flex items-center justify-between gap-3">
@@ -567,7 +567,7 @@ function HeroPhonePreview() {
                 </div>
               </div>
 
-              <div className="mt-2.5 flex items-center justify-between rounded-[1.3rem] bg-slate-950 px-4 py-2 text-white shadow-[0_20px_50px_-28px_rgba(15,23,42,0.55)]">
+              <div className="mt-2 hidden items-center justify-between rounded-[1.3rem] bg-slate-950 px-4 py-2 text-white shadow-[0_20px_50px_-28px_rgba(15,23,42,0.55)] sm:flex">
                 <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300">
                     IA acompanhando
