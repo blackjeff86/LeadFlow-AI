@@ -425,26 +425,26 @@ const heroFloatingPills = [
 
 function HeroPhonePreview() {
   return (
-    <div className="relative mx-auto flex w-full max-w-[420px] items-center justify-center py-3 sm:max-w-[404px] sm:py-5">
+    <div className="relative mx-auto flex w-full max-w-[340px] items-center justify-center py-3 sm:max-w-[404px] sm:py-5">
       <div className="pointer-events-none absolute inset-x-10 top-10 h-52 rounded-full bg-emerald-300/25 blur-3xl" />
       <div className="pointer-events-none absolute inset-x-20 bottom-6 h-40 rounded-full bg-cyan-200/25 blur-3xl" />
 
       {heroFloatingPills.map((pill, index) => (
         <div
           key={pill.label}
-          className={`hero-floating-chip absolute z-20 hidden items-center gap-3 rounded-full border border-white/70 bg-white/90 px-4 py-3 text-sm font-semibold shadow-[0_24px_60px_-30px_rgba(15,23,42,0.4)] backdrop-blur-xl sm:flex ${pill.className}`}
+          className={`hero-floating-chip absolute z-20 flex items-center gap-2 rounded-full border border-white/70 bg-white/90 px-3 py-2 text-xs font-semibold shadow-[0_24px_60px_-30px_rgba(15,23,42,0.4)] backdrop-blur-xl sm:gap-3 sm:px-4 sm:py-3 sm:text-sm ${pill.className}`}
           style={{ animationDelay: `${index * 0.8}s` }}
         >
           <span
-            className={`flex size-9 items-center justify-center rounded-full ${pill.iconClassName}`}
+            className={`flex size-7 items-center justify-center rounded-full sm:size-9 ${pill.iconClassName}`}
           >
-            <pill.icon className="size-4.5" />
+            <pill.icon className="size-3.5 sm:size-4.5" />
           </span>
           {pill.label}
         </div>
       ))}
 
-      <div className="relative z-10 w-[320px] sm:w-[296px] lg:w-[308px]">
+      <div className="relative z-10 w-[210px] sm:w-[296px] lg:w-[308px]">
         <div className="absolute -left-[3px] top-24 h-14 w-[3px] rounded-r-full bg-slate-900/80" />
         <div className="absolute -left-[3px] top-[10.5rem] h-9 w-[3px] rounded-r-full bg-slate-900/80" />
         <div className="absolute -right-[3px] top-32 h-20 w-[3px] rounded-l-full bg-slate-900/80" />
