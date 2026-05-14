@@ -450,6 +450,23 @@ const heroFloatingPillsMobile = [
   },
 ];
 
+const heroMobileMessages = [
+  {
+    title: "Novo lead",
+    text: "Oi! Vi seu anúncio e quero saber se ainda consigo fechar hoje.",
+    time: "09:14",
+    side: "left",
+    position: "top-[10.2rem] left-3.5",
+  },
+  {
+    title: "Resposta com IA",
+    text: "Consegue sim. Posso te mandar agora as melhores opções para decidir rápido.",
+    time: "09:15",
+    side: "right",
+    position: "top-[14.7rem] right-3.5",
+  },
+];
+
 function HeroPhonePreview() {
   return (
     <>
@@ -517,16 +534,60 @@ function HeroPhonePreview() {
                 </div>
               </div>
 
-              <div className="absolute inset-x-3.5 top-[10.2rem] rounded-[1.25rem] border border-white/80 bg-white/92 px-3 py-2.5 shadow-[0_24px_60px_-35px_rgba(15,23,42,0.4)]">
-                <div className="flex items-center justify-between gap-2">
-                  <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-slate-400">
-                    Novo lead
+              {heroMobileMessages.map((message, index) => (
+                <div
+                  key={message.title}
+                  className={`hero-chat-message absolute w-[78%] rounded-[1.15rem] border px-3 py-2.5 shadow-[0_24px_60px_-35px_rgba(15,23,42,0.4)] ${message.position} ${
+                    message.side === "right"
+                      ? "border-emerald-400/30 bg-emerald-500 text-white"
+                      : "border-white/80 bg-white/92 text-slate-900"
+                  }`}
+                  style={{ animationDelay: `${index * 1.15}s` }}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <p
+                      className={`text-[9px] font-semibold uppercase tracking-[0.14em] ${
+                        message.side === "right" ? "text-emerald-50/90" : "text-slate-400"
+                      }`}
+                    >
+                      {message.title}
+                    </p>
+                    <span
+                      className={`text-[9px] ${
+                        message.side === "right" ? "text-emerald-50/80" : "text-slate-400"
+                      }`}
+                    >
+                      {message.time}
+                    </span>
+                  </div>
+                  <p
+                    className={`mt-1.5 text-[11px] leading-[1.125rem] ${
+                      message.side === "right" ? "text-white" : "text-slate-600"
+                    }`}
+                  >
+                    {message.text}
                   </p>
-                  <span className="text-[9px] text-slate-400">09:14</span>
                 </div>
-                <p className="mt-1.5 text-[11px] leading-[1.125rem] text-slate-600">
-                  Oi! Vi seu anúncio e quero saber se ainda consigo fechar hoje.
-                </p>
+              ))}
+
+              <div className="absolute inset-x-3.5 bottom-3 flex items-center justify-between rounded-[1.15rem] bg-slate-950 px-3 py-2.5 text-white shadow-[0_20px_50px_-28px_rgba(15,23,42,0.55)]">
+                <div>
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-emerald-300">
+                    IA acompanhando
+                  </p>
+                  <p className="mt-1 text-[10px] leading-4 text-slate-200">
+                    Nova mensagem chegando na conversa
+                  </p>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  {[0, 1, 2].map((dot) => (
+                    <span
+                      key={dot}
+                      className="hero-typing-dot size-1.5 rounded-full bg-emerald-300"
+                      style={{ animationDelay: `${dot * 0.16}s` }}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
