@@ -62,12 +62,12 @@ export function MobileNav() {
               variant="outline"
               className="h-12 w-full rounded-2xl border-slate-200"
             >
-              <Link href="#cta">Entrar</Link>
+              <Link href="/login">Entrar</Link>
             </Button>
           </SheetClose>
           <SheetClose asChild>
             <Button asChild className="h-12 w-full rounded-2xl">
-              <Link href="#cta">Testar 14 dias grátis</Link>
+              <Link href="/login">Testar 14 dias grátis</Link>
             </Button>
           </SheetClose>
         </div>

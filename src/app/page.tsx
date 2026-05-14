@@ -792,10 +792,10 @@ export default function Home() {
 
           <div className="hidden items-center gap-3 lg:flex">
             <Button asChild variant="ghost">
-              <Link href="#cta">Entrar</Link>
+              <Link href="/painel">Entrar</Link>
             </Button>
             <Button asChild>
-              <Link href="#cta">Testar 14 dias grátis</Link>
+              <Link href="/login">Testar 14 dias grátis</Link>
             </Button>
           </div>
 
@@ -827,7 +827,7 @@ export default function Home() {
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg" className="h-12 rounded-2xl">
-                <Link href="#cta">
+                <Link href="/login">
                   Testar 14 dias grátis
                   <ArrowRight className="size-4" />
                 </Link>
@@ -1146,7 +1146,7 @@ export default function Home() {
                   variant={plan.highlighted ? "default" : "secondary"}
                   className={`mt-8 h-12 w-full rounded-2xl ${plan.highlighted ? "" : "bg-slate-900 text-white hover:bg-slate-800"}`}
                 >
-                  <Link href="#cta">{plan.cta}</Link>
+                  <Link href="/login">{plan.cta}</Link>
                 </Button>
 
                 <p
@@ -1208,7 +1208,7 @@ export default function Home() {
 
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                 <Button asChild size="lg" className="h-12 rounded-2xl">
-                  <Link href="#hero">Começar teste grátis</Link>
+                  <Link href="/login">Começar teste grátis</Link>
                 </Button>
                 <Button
                   asChild
