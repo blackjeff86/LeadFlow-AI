@@ -19,7 +19,7 @@ import {
   PanelsTopLeft,
   Radar,
   RefreshCw,
-  Send,
+
   Sparkles,
   Star,
   Tag,
@@ -490,7 +490,7 @@ function HeroPhonePreview() {
                 </div>
               </div>
 
-              <div className="relative mt-3 h-[16.5rem]">
+              <div className="relative mt-3 h-[8.5rem] sm:h-[16.5rem]">
                 {heroMessages.map((message, index) => (
                   <div
                     key={message.title}
@@ -498,7 +498,7 @@ function HeroPhonePreview() {
                       message.side === "right"
                         ? "border-emerald-400/30 bg-emerald-500 text-white"
                         : "border-white/80 bg-white/92 text-slate-900"
-                    }`}
+                    } ${index >= 2 ? "hidden sm:block" : ""}`}
                     style={{ animationDelay: `${index * 1.15}s` }}
                   >
                     <div className="flex items-center justify-between gap-3">
@@ -528,7 +528,7 @@ function HeroPhonePreview() {
                 ))}
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="hidden sm:grid grid-cols-2 gap-3">
                 <div className="rounded-[1.25rem] border border-white/70 bg-white/82 p-3 shadow-[0_18px_50px_-30px_rgba(15,23,42,0.25)]">
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0">
@@ -594,68 +594,6 @@ function HeroPhonePreview() {
   );
 }
 
-function HeroMobileStats() {
-  return (
-    <div className="mt-8 grid grid-cols-2 gap-3 lg:hidden">
-      <div className="col-span-2 rounded-2xl border border-white/70 bg-white/85 p-4 shadow-sm backdrop-blur-sm">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-          Pipeline ao vivo
-        </p>
-        <div className="mt-2 flex items-center justify-between">
-          <p className="text-2xl font-semibold text-slate-900">8 leads quentes hoje</p>
-          <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
-            +23%
-          </span>
-        </div>
-      </div>
-
-      <div className="rounded-2xl border border-white/70 bg-white/85 p-4 shadow-sm backdrop-blur-sm">
-        <div className="flex items-center justify-between gap-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-            Follow-up
-          </p>
-          <span className="flex size-7 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
-            <Clock3 className="size-3.5" />
-          </span>
-        </div>
-        <p className="mt-3 text-3xl font-semibold text-slate-900">14</p>
-        <p className="mt-1 text-xs text-slate-500">agendados para hoje</p>
-      </div>
-
-      <div className="rounded-2xl border border-white/70 bg-white/85 p-4 shadow-sm backdrop-blur-sm">
-        <div className="flex items-center justify-between gap-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-            Oportunidades
-          </p>
-          <span className="flex size-7 items-center justify-center rounded-full bg-sky-100 text-sky-700">
-            <Target className="size-3.5" />
-          </span>
-        </div>
-        <p className="mt-3 text-3xl font-semibold text-slate-900">12</p>
-        <p className="mt-1 text-xs text-slate-500">leads em negociação</p>
-      </div>
-
-      <div className="col-span-2 rounded-2xl border border-emerald-200/60 bg-emerald-500 p-4 shadow-sm">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-100">
-          Resposta com IA
-        </p>
-        <p className="mt-2 text-sm leading-5 text-white">
-          Consegue sim. Posso te mandar agora as melhores opções para decidir rápido.
-        </p>
-        <div className="mt-3 flex items-center gap-2">
-          {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              className="hero-typing-dot size-2 rounded-full bg-emerald-200"
-              style={{ animationDelay: `${i * 0.16}s` }}
-            />
-          ))}
-          <span className="text-xs text-emerald-100">IA gerando resposta...</span>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function Home() {
   return (
@@ -743,12 +681,9 @@ export default function Home() {
               ))}
             </div>
 
-            <HeroMobileStats />
           </div>
 
-          <div className="hidden lg:flex">
-            <HeroPhonePreview />
-          </div>
+          <HeroPhonePreview />
         </div>
       </section>
 
