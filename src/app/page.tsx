@@ -425,7 +425,7 @@ const heroFloatingPills = [
 
 function HeroPhonePreview() {
   return (
-    <div className="relative mx-auto flex w-full max-w-[376px] items-center justify-center py-3 sm:max-w-[404px] sm:py-5">
+    <div className="relative mx-auto flex w-full max-w-[420px] items-center justify-center py-3 sm:max-w-[404px] sm:py-5">
       <div className="pointer-events-none absolute inset-x-10 top-10 h-52 rounded-full bg-emerald-300/25 blur-3xl" />
       <div className="pointer-events-none absolute inset-x-20 bottom-6 h-40 rounded-full bg-cyan-200/25 blur-3xl" />
 
@@ -444,7 +444,7 @@ function HeroPhonePreview() {
         </div>
       ))}
 
-      <div className="relative z-10 w-[280px] sm:w-[296px] lg:w-[308px]">
+      <div className="relative z-10 w-[320px] sm:w-[296px] lg:w-[308px]">
         <div className="absolute -left-[3px] top-24 h-14 w-[3px] rounded-r-full bg-slate-900/80" />
         <div className="absolute -left-[3px] top-[10.5rem] h-9 w-[3px] rounded-r-full bg-slate-900/80" />
         <div className="absolute -right-[3px] top-32 h-20 w-[3px] rounded-l-full bg-slate-900/80" />
