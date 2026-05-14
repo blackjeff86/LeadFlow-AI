@@ -423,174 +423,281 @@ const heroFloatingPills = [
   },
 ];
 
+const heroFloatingPillsMobile = [
+  {
+    label: "Automação",
+    icon: Bot,
+    className: "-left-9 top-14 text-emerald-700",
+    iconClassName: "bg-emerald-100 text-emerald-700",
+  },
+  {
+    label: "Mensagens com IA",
+    icon: Sparkles,
+    className: "-right-12 top-24 text-lime-600",
+    iconClassName: "bg-lime-100 text-lime-600",
+  },
+  {
+    label: "CRM simples",
+    icon: PanelsTopLeft,
+    className: "-left-10 bottom-[5.5rem] text-sky-600",
+    iconClassName: "bg-sky-100 text-sky-600",
+  },
+  {
+    label: "Follow-up inteligente",
+    icon: CalendarClock,
+    className: "-right-14 bottom-10 text-fuchsia-600",
+    iconClassName: "bg-fuchsia-100 text-fuchsia-600",
+  },
+];
+
 function HeroPhonePreview() {
   return (
-    <div className="relative mx-auto flex w-full max-w-[350px] items-center justify-center py-3 sm:max-w-[404px] sm:py-5">
-      <div className="pointer-events-none absolute inset-x-10 top-10 h-44 rounded-full bg-emerald-300/25 blur-3xl sm:h-52" />
-      <div className="pointer-events-none absolute inset-x-20 bottom-6 h-32 rounded-full bg-cyan-200/25 blur-3xl sm:h-40" />
+    <>
+      <div className="relative mx-auto flex w-full max-w-[320px] items-center justify-center py-2 sm:hidden">
+        <div className="pointer-events-none absolute inset-x-4 top-8 h-36 rounded-full bg-emerald-300/25 blur-3xl" />
+        <div className="pointer-events-none absolute inset-x-10 bottom-6 h-28 rounded-full bg-cyan-200/25 blur-3xl" />
 
-      {heroFloatingPills.map((pill, index) => (
-        <div
-          key={pill.label}
-          className={`hero-floating-chip absolute z-20 flex items-center gap-2 rounded-full border border-white/70 bg-white/90 px-3 py-2 text-xs font-semibold shadow-[0_24px_60px_-30px_rgba(15,23,42,0.4)] backdrop-blur-xl sm:gap-3 sm:px-4 sm:py-3 sm:text-sm ${pill.className}`}
-          style={{ animationDelay: `${index * 0.8}s` }}
-        >
-          <span
-            className={`flex size-7 items-center justify-center rounded-full sm:size-9 ${pill.iconClassName}`}
+        {heroFloatingPillsMobile.map((pill, index) => (
+          <div
+            key={pill.label}
+            className={`hero-floating-chip absolute z-20 flex items-center gap-2 rounded-full border border-white/70 bg-white/92 px-3 py-2 text-[11px] font-semibold shadow-[0_24px_60px_-30px_rgba(15,23,42,0.4)] backdrop-blur-xl ${pill.className}`}
+            style={{ animationDelay: `${index * 0.8}s` }}
           >
-            <pill.icon className="size-3.5 sm:size-4.5" />
-          </span>
-          {pill.label}
-        </div>
-      ))}
-
-      <div className="relative z-10 w-[232px] sm:w-[296px] lg:w-[308px]">
-        <div className="absolute -left-[3px] top-24 h-14 w-[3px] rounded-r-full bg-slate-900/80" />
-        <div className="absolute -left-[3px] top-[10.5rem] h-9 w-[3px] rounded-r-full bg-slate-900/80" />
-        <div className="absolute -right-[3px] top-32 h-20 w-[3px] rounded-l-full bg-slate-900/80" />
-
-        <div className="relative rounded-[2.65rem] bg-[#07090c] p-[7px] shadow-[0_45px_120px_-45px_rgba(15,23,42,0.85)] ring-1 ring-slate-950/10 sm:rounded-[3.15rem] sm:p-[8px]">
-          <div className="absolute left-1/2 top-2.5 z-30 h-[1.55rem] w-[5.3rem] -translate-x-1/2 rounded-full bg-black shadow-[inset_0_1px_2px_rgba(255,255,255,0.08)] sm:top-3 sm:h-[1.875rem] sm:w-[6.5rem]" />
-          <div className="absolute left-1/2 top-[0.95rem] z-40 h-2 w-2 -translate-x-1/2 rounded-full bg-slate-950 ring-[3px] ring-black sm:top-[1.05rem] sm:h-2.5 sm:w-2.5">
-            <div className="h-full w-full rounded-full bg-emerald-400/35" />
+            <span className={`flex size-7 items-center justify-center rounded-full ${pill.iconClassName}`}>
+              <pill.icon className="size-3.5" />
+            </span>
+            {pill.label}
           </div>
+        ))}
 
-          <div className="relative overflow-hidden rounded-[2.3rem] border border-white/10 bg-[linear-gradient(180deg,#f9fffd_0%,#eef8f4_55%,#f8fbff_100%)] sm:rounded-[2.75rem]">
-            <div className="hero-screen-shine pointer-events-none absolute inset-y-0 -left-1/3 w-1/2 rotate-12 bg-white/35 blur-2xl" />
+        <div className="relative z-10 w-[182px]">
+          <div className="absolute -left-[3px] top-20 h-12 w-[3px] rounded-r-full bg-slate-900/80" />
+          <div className="absolute -left-[3px] top-[8.8rem] h-8 w-[3px] rounded-r-full bg-slate-900/80" />
+          <div className="absolute -right-[3px] top-28 h-16 w-[3px] rounded-l-full bg-slate-900/80" />
 
-            <div className="flex items-center justify-between px-3.5 pb-2 pt-[2.5rem] sm:px-[1.125rem] sm:pb-2.5 sm:pt-[3rem]">
-              <div className="flex items-center gap-3">
-                <div className="flex size-8 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 text-[11px] font-semibold text-white shadow-lg shadow-emerald-500/30 sm:size-9 sm:text-xs">
-                  LF
-                </div>
-                <div>
-                  <p className="text-[12px] font-semibold text-slate-900 sm:text-[13px]">LeadFlow AI</p>
-                  <p className="text-[11px] text-emerald-700 sm:text-xs">3 mensagens novas agora</p>
-                </div>
-              </div>
-              <div className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700 sm:px-3 sm:text-[11px] sm:tracking-[0.2em]">
-                Online
-              </div>
+          <div className="relative rounded-[2.45rem] bg-[#07090c] p-[6px] shadow-[0_45px_120px_-45px_rgba(15,23,42,0.85)] ring-1 ring-slate-950/10">
+            <div className="absolute left-1/2 top-2.5 z-30 h-[1.45rem] w-[4.8rem] -translate-x-1/2 rounded-full bg-black shadow-[inset_0_1px_2px_rgba(255,255,255,0.08)]" />
+            <div className="absolute left-1/2 top-[0.9rem] z-40 h-2 w-2 -translate-x-1/2 rounded-full bg-slate-950 ring-[3px] ring-black">
+              <div className="h-full w-full rounded-full bg-emerald-400/35" />
             </div>
 
-            <div className="px-3.5 pb-3 sm:px-4 sm:pb-3.5">
-              <div className="rounded-[1.35rem] border border-white/70 bg-white/80 p-2.5 shadow-[0_18px_50px_-30px_rgba(15,23,42,0.25)] sm:rounded-[1.55rem] sm:p-3">
-                <div className="flex items-center justify-between gap-3">
+            <div className="relative aspect-[390/820] overflow-hidden rounded-[2.1rem] border border-white/10 bg-[linear-gradient(180deg,#f9fffd_0%,#eef8f4_55%,#f8fbff_100%)]">
+              <div className="hero-screen-shine pointer-events-none absolute inset-y-0 -left-1/3 w-1/2 rotate-12 bg-white/35 blur-2xl" />
+
+              <div className="absolute inset-x-0 top-0 px-3.5 pb-2 pt-[2.4rem]">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex size-7 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 text-[10px] font-semibold text-white shadow-lg shadow-emerald-500/30">
+                      LF
+                    </div>
+                    <div>
+                      <p className="text-[11px] font-semibold text-slate-900">LeadFlow AI</p>
+                      <p className="text-[10px] text-emerald-700">3 mensagens novas</p>
+                    </div>
+                  </div>
+                  <div className="rounded-full border border-emerald-200 bg-emerald-50 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.16em] text-emerald-700">
+                    Online
+                  </div>
+                </div>
+              </div>
+
+              <div className="absolute inset-x-3.5 top-[5.3rem] rounded-[1.25rem] border border-white/70 bg-white/85 p-2.5 shadow-[0_18px_50px_-30px_rgba(15,23,42,0.25)]">
+                <div className="flex items-center justify-between gap-2">
                   <div>
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400 sm:text-xs sm:tracking-[0.18em]">
+                    <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-slate-400">
                       Pipeline ao vivo
                     </p>
-                    <p className="mt-1 text-[13px] font-semibold text-slate-900 sm:text-[14px]">
+                    <p className="mt-1 text-[12px] font-semibold text-slate-900">
                       8 leads quentes hoje
                     </p>
                   </div>
-                  <div className="rounded-full bg-emerald-100 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 sm:px-3 sm:text-xs">
+                  <div className="rounded-full bg-emerald-100 px-2 py-1 text-[10px] font-semibold text-emerald-700">
                     +23%
                   </div>
                 </div>
               </div>
 
-              <div className="relative mt-3 h-[5.2rem] sm:h-[16.5rem]">
-                {heroMessages.map((message, index) => (
-                  <div
-                    key={message.title}
-                    className={`hero-chat-message absolute w-[82%] rounded-[1.5rem] border px-3.5 py-2.5 shadow-[0_24px_60px_-35px_rgba(15,23,42,0.4)] ${message.position} ${
-                      message.side === "right"
-                        ? "border-emerald-400/30 bg-emerald-500 text-white"
-                        : "border-white/80 bg-white/92 text-slate-900"
-                    } ${index >= 1 ? "hidden sm:block" : ""}`}
-                    style={{ animationDelay: `${index * 1.15}s` }}
-                  >
-                    <div className="flex items-center justify-between gap-3">
-                      <p
-                        className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${
-                          message.side === "right" ? "text-emerald-50/90" : "text-slate-400"
-                        }`}
-                      >
-                        {message.title}
+              <div className="absolute inset-x-3.5 top-[10.2rem] rounded-[1.25rem] border border-white/80 bg-white/92 px-3 py-2.5 shadow-[0_24px_60px_-35px_rgba(15,23,42,0.4)]">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-slate-400">
+                    Novo lead
+                  </p>
+                  <span className="text-[9px] text-slate-400">09:14</span>
+                </div>
+                <p className="mt-1.5 text-[11px] leading-[1.125rem] text-slate-600">
+                  Oi! Vi seu anúncio e quero saber se ainda consigo fechar hoje.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative mx-auto hidden w-full max-w-[404px] items-center justify-center py-5 sm:flex">
+        <div className="pointer-events-none absolute inset-x-10 top-10 h-52 rounded-full bg-emerald-300/25 blur-3xl" />
+        <div className="pointer-events-none absolute inset-x-20 bottom-6 h-40 rounded-full bg-cyan-200/25 blur-3xl" />
+
+        {heroFloatingPills.map((pill, index) => (
+          <div
+            key={pill.label}
+            className={`hero-floating-chip absolute z-20 flex items-center gap-3 rounded-full border border-white/70 bg-white/90 px-4 py-3 text-sm font-semibold shadow-[0_24px_60px_-30px_rgba(15,23,42,0.4)] backdrop-blur-xl ${pill.className}`}
+            style={{ animationDelay: `${index * 0.8}s` }}
+          >
+            <span className={`flex size-9 items-center justify-center rounded-full ${pill.iconClassName}`}>
+              <pill.icon className="size-4.5" />
+            </span>
+            {pill.label}
+          </div>
+        ))}
+
+        <div className="relative z-10 w-[296px] lg:w-[308px]">
+          <div className="absolute -left-[3px] top-24 h-14 w-[3px] rounded-r-full bg-slate-900/80" />
+          <div className="absolute -left-[3px] top-[10.5rem] h-9 w-[3px] rounded-r-full bg-slate-900/80" />
+          <div className="absolute -right-[3px] top-32 h-20 w-[3px] rounded-l-full bg-slate-900/80" />
+
+          <div className="relative rounded-[3.15rem] bg-[#07090c] p-[8px] shadow-[0_45px_120px_-45px_rgba(15,23,42,0.85)] ring-1 ring-slate-950/10">
+            <div className="absolute left-1/2 top-3 z-30 h-[1.875rem] w-[6.5rem] -translate-x-1/2 rounded-full bg-black shadow-[inset_0_1px_2px_rgba(255,255,255,0.08)]" />
+            <div className="absolute left-1/2 top-[1.05rem] z-40 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-slate-950 ring-[3px] ring-black">
+              <div className="h-full w-full rounded-full bg-emerald-400/35" />
+            </div>
+
+            <div className="relative overflow-hidden rounded-[2.75rem] border border-white/10 bg-[linear-gradient(180deg,#f9fffd_0%,#eef8f4_55%,#f8fbff_100%)]">
+              <div className="hero-screen-shine pointer-events-none absolute inset-y-0 -left-1/3 w-1/2 rotate-12 bg-white/35 blur-2xl" />
+
+              <div className="flex items-center justify-between px-[1.125rem] pb-2.5 pt-[3rem]">
+                <div className="flex items-center gap-3">
+                  <div className="flex size-9 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 text-xs font-semibold text-white shadow-lg shadow-emerald-500/30">
+                    LF
+                  </div>
+                  <div>
+                    <p className="text-[13px] font-semibold text-slate-900">LeadFlow AI</p>
+                    <p className="text-xs text-emerald-700">3 mensagens novas agora</p>
+                  </div>
+                </div>
+                <div className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
+                  Online
+                </div>
+              </div>
+
+              <div className="px-4 pb-3.5">
+                <div className="rounded-[1.55rem] border border-white/70 bg-white/80 p-3 shadow-[0_18px_50px_-30px_rgba(15,23,42,0.25)]">
+                  <div className="flex items-center justify-between gap-3">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                        Pipeline ao vivo
                       </p>
-                      <span
-                        className={`text-[11px] ${
-                          message.side === "right" ? "text-emerald-50/80" : "text-slate-400"
+                      <p className="mt-1 text-[14px] font-semibold text-slate-900">
+                        8 leads quentes hoje
+                      </p>
+                    </div>
+                    <div className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
+                      +23%
+                    </div>
+                  </div>
+                </div>
+
+                <div className="relative mt-3 h-[16.5rem]">
+                  {heroMessages.map((message, index) => (
+                    <div
+                      key={message.title}
+                      className={`hero-chat-message absolute w-[82%] rounded-[1.5rem] border px-3.5 py-2.5 shadow-[0_24px_60px_-35px_rgba(15,23,42,0.4)] ${message.position} ${
+                        message.side === "right"
+                          ? "border-emerald-400/30 bg-emerald-500 text-white"
+                          : "border-white/80 bg-white/92 text-slate-900"
+                      }`}
+                      style={{ animationDelay: `${index * 1.15}s` }}
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <p
+                          className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${
+                            message.side === "right" ? "text-emerald-50/90" : "text-slate-400"
+                          }`}
+                        >
+                          {message.title}
+                        </p>
+                        <span
+                          className={`text-[11px] ${
+                            message.side === "right" ? "text-emerald-50/80" : "text-slate-400"
+                          }`}
+                        >
+                          {message.time}
+                        </span>
+                      </div>
+                      <p
+                        className={`mt-1.5 text-[12px] leading-5 ${
+                          message.side === "right" ? "text-white" : "text-slate-600"
                         }`}
                       >
-                        {message.time}
+                        {message.text}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="rounded-[1.25rem] border border-white/70 bg-white/82 p-3 shadow-[0_18px_50px_-30px_rgba(15,23,42,0.25)]">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="min-w-0">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                          Follow-up
+                        </p>
+                        <p className="mt-2 text-xl font-semibold leading-none text-slate-900">
+                          14
+                        </p>
+                      </div>
+                      <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                        <Clock3 className="size-4" />
                       </span>
                     </div>
-                    <p
-                      className={`mt-1.5 text-[12px] leading-5 ${
-                        message.side === "right" ? "text-white" : "text-slate-600"
-                      }`}
-                    >
-                      {message.text}
+                    <p className="mt-2 text-[11px] leading-4 text-slate-500">
+                      agendados para hoje
                     </p>
                   </div>
-                ))}
-              </div>
-
-              <div className="hidden sm:grid grid-cols-2 gap-3">
-                <div className="rounded-[1.25rem] border border-white/70 bg-white/82 p-3 shadow-[0_18px_50px_-30px_rgba(15,23,42,0.25)]">
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="min-w-0">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-                        Follow-up
-                      </p>
-                      <p className="mt-2 text-xl font-semibold leading-none text-slate-900">
-                        14
-                      </p>
+                  <div className="rounded-[1.25rem] border border-white/70 bg-white/82 p-3 shadow-[0_18px_50px_-30px_rgba(15,23,42,0.25)]">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="min-w-0">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                          Oportunidades
+                        </p>
+                        <p className="mt-2 text-xl font-semibold leading-none text-slate-900">
+                          12
+                        </p>
+                      </div>
+                      <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-sky-100 text-sky-700">
+                        <Target className="size-4" />
+                      </span>
                     </div>
-                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
-                      <Clock3 className="size-4" />
-                    </span>
+                    <p className="mt-2 text-[11px] leading-4 text-slate-500">
+                      leads em negociação
+                    </p>
                   </div>
-                  <p className="mt-2 text-[11px] leading-4 text-slate-500">
-                    agendados para hoje
-                  </p>
                 </div>
-                <div className="rounded-[1.25rem] border border-white/70 bg-white/82 p-3 shadow-[0_18px_50px_-30px_rgba(15,23,42,0.25)]">
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="min-w-0">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-                        Oportunidades
-                      </p>
-                      <p className="mt-2 text-xl font-semibold leading-none text-slate-900">
-                        12
-                      </p>
-                    </div>
-                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-sky-100 text-sky-700">
-                      <Target className="size-4" />
-                    </span>
-                  </div>
-                  <p className="mt-2 text-[11px] leading-4 text-slate-500">
-                    leads em negociação
-                  </p>
-                </div>
-              </div>
 
-              <div className="mt-2 hidden items-center justify-between rounded-[1.3rem] bg-slate-950 px-4 py-2 text-white shadow-[0_20px_50px_-28px_rgba(15,23,42,0.55)] sm:flex">
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300">
-                    IA acompanhando
-                  </p>
-                  <p className="mt-0.5 text-[12px] text-slate-200">
-                    Nova mensagem chegando na conversa
-                  </p>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  {[0, 1, 2].map((dot) => (
-                    <span
-                      key={dot}
-                      className="hero-typing-dot size-2 rounded-full bg-emerald-300"
-                      style={{ animationDelay: `${dot * 0.16}s` }}
-                    />
-                  ))}
+                <div className="mt-2 flex items-center justify-between rounded-[1.3rem] bg-slate-950 px-4 py-2 text-white shadow-[0_20px_50px_-28px_rgba(15,23,42,0.55)]">
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300">
+                      IA acompanhando
+                    </p>
+                    <p className="mt-0.5 text-[12px] text-slate-200">
+                      Nova mensagem chegando na conversa
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    {[0, 1, 2].map((dot) => (
+                      <span
+                        key={dot}
+                        className="hero-typing-dot size-2 rounded-full bg-emerald-300"
+                        style={{ animationDelay: `${dot * 0.16}s` }}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
