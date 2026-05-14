@@ -453,17 +453,19 @@ const heroFloatingPillsMobile = [
 const heroMobileMessages = [
   {
     title: "Novo lead",
-    text: "Oi! Vi seu anúncio e quero saber se ainda consigo fechar hoje.",
+    text: "Oi! Vi seu anúncio e quero saber se consigo fechar hoje.",
     time: "09:14",
     side: "left",
-    position: "top-[10.2rem] left-3.5",
+    position: "top-0 left-0",
+    width: "w-[76%]",
   },
   {
     title: "Resposta com IA",
-    text: "Consegue sim. Posso te mandar agora as melhores opções para decidir rápido.",
+    text: "Consegue sim. Posso te mandar as melhores opções para decidir rápido.",
     time: "09:15",
     side: "right",
-    position: "top-[14.7rem] right-3.5",
+    position: "bottom-0 right-0",
+    width: "w-[72%]",
   },
 ];
 
@@ -534,48 +536,50 @@ function HeroPhonePreview() {
                 </div>
               </div>
 
-              {heroMobileMessages.map((message, index) => (
-                <div
-                  key={message.title}
-                  className={`hero-chat-message absolute w-[78%] rounded-[1.15rem] border px-3 py-2.5 shadow-[0_24px_60px_-35px_rgba(15,23,42,0.4)] ${message.position} ${
-                    message.side === "right"
-                      ? "border-emerald-400/30 bg-emerald-500 text-white"
-                      : "border-white/80 bg-white/92 text-slate-900"
-                  }`}
-                  style={{ animationDelay: `${index * 1.15}s` }}
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <p
-                      className={`text-[9px] font-semibold uppercase tracking-[0.14em] ${
-                        message.side === "right" ? "text-emerald-50/90" : "text-slate-400"
-                      }`}
-                    >
-                      {message.title}
-                    </p>
-                    <span
-                      className={`text-[9px] ${
-                        message.side === "right" ? "text-emerald-50/80" : "text-slate-400"
-                      }`}
-                    >
-                      {message.time}
-                    </span>
-                  </div>
-                  <p
-                    className={`mt-1.5 text-[11px] leading-[1.125rem] ${
-                      message.side === "right" ? "text-white" : "text-slate-600"
+              <div className="absolute inset-x-3.5 top-[10rem] h-[7rem]">
+                {heroMobileMessages.map((message, index) => (
+                  <div
+                    key={message.title}
+                    className={`hero-chat-message absolute ${message.width} rounded-[1.05rem] border px-2.5 py-2 shadow-[0_24px_60px_-35px_rgba(15,23,42,0.4)] ${message.position} ${
+                      message.side === "right"
+                        ? "border-emerald-400/30 bg-emerald-500 text-white"
+                        : "border-white/80 bg-white/92 text-slate-900"
                     }`}
+                    style={{ animationDelay: `${index * 1.15}s` }}
                   >
-                    {message.text}
-                  </p>
-                </div>
-              ))}
+                    <div className="flex items-center justify-between gap-2">
+                      <p
+                        className={`text-[8px] font-semibold uppercase tracking-[0.14em] ${
+                          message.side === "right" ? "text-emerald-50/90" : "text-slate-400"
+                        }`}
+                      >
+                        {message.title}
+                      </p>
+                      <span
+                        className={`text-[8px] ${
+                          message.side === "right" ? "text-emerald-50/80" : "text-slate-400"
+                        }`}
+                      >
+                        {message.time}
+                      </span>
+                    </div>
+                    <p
+                      className={`mt-1 text-[10px] leading-[1rem] ${
+                        message.side === "right" ? "text-white" : "text-slate-600"
+                      }`}
+                    >
+                      {message.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
 
-              <div className="absolute inset-x-3.5 bottom-3 flex items-center justify-between rounded-[1.15rem] bg-slate-950 px-3 py-2.5 text-white shadow-[0_20px_50px_-28px_rgba(15,23,42,0.55)]">
+              <div className="absolute inset-x-3.5 bottom-3 flex items-center justify-between rounded-[1rem] border border-white/8 bg-slate-950 px-3 py-2 text-white shadow-[0_20px_50px_-28px_rgba(15,23,42,0.55)]">
                 <div>
                   <p className="text-[9px] font-semibold uppercase tracking-[0.16em] text-emerald-300">
                     IA acompanhando
                   </p>
-                  <p className="mt-1 text-[10px] leading-4 text-slate-200">
+                  <p className="mt-0.5 text-[9px] leading-4 text-slate-200">
                     Nova mensagem chegando na conversa
                   </p>
                 </div>
