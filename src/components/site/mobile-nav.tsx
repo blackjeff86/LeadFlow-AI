@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sheet";
 
 const navItems = [
+  { href: "#como-funciona", label: "Como funciona" },
   { href: "#recursos", label: "Recursos" },
   { href: "#precos", label: "Preços" },
   { href: "#faq", label: "FAQ" },
@@ -66,7 +67,7 @@ export function MobileNav() {
           </SheetClose>
           <SheetClose asChild>
             <Button asChild className="h-12 w-full rounded-2xl">
-              <Link href="#cta">Testar grátis</Link>
+              <Link href="#cta">Testar 14 dias grátis</Link>
             </Button>
           </SheetClose>
         </div>

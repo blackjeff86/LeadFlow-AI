@@ -1,20 +1,28 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  BarChart2,
+  Bell,
   Bot,
+  Brain,
   CalendarClock,
-  ChartColumnIncreasing,
   Check,
   CircleDashed,
-  FileSpreadsheet,
   Clock3,
+  FileSpreadsheet,
+  FileText,
   Flame,
+  History,
+  Kanban,
   Link2,
   MessageSquareText,
   PanelsTopLeft,
   Radar,
+  RefreshCw,
   Send,
   Sparkles,
+  Star,
+  Tag,
   Target,
   Users,
   WalletCards,
@@ -86,31 +94,132 @@ const solutionItems = [
   },
 ];
 
-const featureCards: { title: string; description: string; icon: LucideIcon }[] = [
+const featureCards: {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  color: string;
+  bg: string;
+}[] = [
   {
     title: "CRM simples",
-    description: "Organize leads e etapas sem complicação.",
+    description:
+      "Organize leads, estágios e histórico sem a complexidade de um CRM enterprise.",
     icon: PanelsTopLeft,
+    color: "text-emerald-700",
+    bg: "bg-emerald-100",
+  },
+  {
+    title: "Pipeline Kanban",
+    description:
+      "Visualize seu funil de vendas com drag‑and‑drop e priorize o que vai fechar.",
+    icon: Kanban,
+    color: "text-blue-700",
+    bg: "bg-blue-100",
   },
   {
     title: "Mensagens com IA",
-    description: "Sugestões prontas para vender com mais rapidez.",
+    description:
+      "Sugestões prontas para iniciar, retomar ou fechar uma negociação mais rápido.",
     icon: Sparkles,
+    color: "text-violet-700",
+    bg: "bg-violet-100",
   },
   {
-    title: "Campanhas para WhatsApp",
-    description: "Planeje contatos e cadências com foco em resposta.",
-    icon: Send,
+    title: "Templates inteligentes",
+    description:
+      "Biblioteca de scripts de alto impacto para cada etapa do funil de vendas.",
+    icon: FileText,
+    color: "text-amber-700",
+    bg: "bg-amber-100",
   },
   {
     title: "Lembretes de follow-up",
-    description: "Nunca mais perca o timing de uma oportunidade.",
+    description:
+      "Nunca mais perca o timing de uma oportunidade. Defina quando voltar e a IA te lembra.",
     icon: CalendarClock,
+    color: "text-rose-700",
+    bg: "bg-rose-100",
+  },
+  {
+    title: "Lead Scoring por IA",
+    description:
+      "A IA analisa comportamento e conversa para indicar quem está pronto para fechar.",
+    icon: Star,
+    color: "text-orange-700",
+    bg: "bg-orange-100",
+  },
+  {
+    title: "Cadências automáticas",
+    description:
+      "Crie sequências de contato automáticas para não deixar leads esfriarem.",
+    icon: RefreshCw,
+    color: "text-teal-700",
+    bg: "bg-teal-100",
   },
   {
     title: "Dashboard de vendas",
-    description: "Acompanhe o que está andando e o que travou.",
-    icon: ChartColumnIncreasing,
+    description:
+      "Métricas claras sobre pipeline, taxa de conversão e tempo de resposta.",
+    icon: BarChart2,
+    color: "text-indigo-700",
+    bg: "bg-indigo-100",
+  },
+  {
+    title: "Histórico de conversas",
+    description:
+      "Acesse o contexto completo de cada cliente para nunca perder o fio da meada.",
+    icon: History,
+    color: "text-cyan-700",
+    bg: "bg-cyan-100",
+  },
+  {
+    title: "Segmentação por tags",
+    description:
+      "Organize leads por produto, região, origem e perfil para abordar no momento certo.",
+    icon: Tag,
+    color: "text-fuchsia-700",
+    bg: "bg-fuchsia-100",
+  },
+  {
+    title: "Notificações inteligentes",
+    description:
+      "Alertas no momento certo: lead respondeu, follow-up vencendo, oportunidade quente.",
+    icon: Bell,
+    color: "text-yellow-700",
+    bg: "bg-yellow-100",
+  },
+  {
+    title: "Análise de sentimento",
+    description:
+      "A IA detecta o humor e a intenção do lead para orientar sua próxima abordagem.",
+    icon: Brain,
+    color: "text-pink-700",
+    bg: "bg-pink-100",
+  },
+];
+
+const howItWorksSteps = [
+  {
+    step: "01",
+    title: "Cadastre seus leads",
+    description:
+      "Importe de uma planilha ou adicione manualmente. Cada lead fica com histórico, tags e próximo passo definidos.",
+    icon: Users,
+  },
+  {
+    step: "02",
+    title: "IA sugere e prioriza",
+    description:
+      "Com base na conversa e no comportamento, a IA indica quem abordar agora e gera a mensagem ideal para o momento.",
+    icon: Brain,
+  },
+  {
+    step: "03",
+    title: "Feche com consistência",
+    description:
+      "Follow-up no timing certo, pipeline sempre atualizado e métricas reais para saber o que está funcionando.",
+    icon: Target,
   },
 ];
 
@@ -163,28 +272,47 @@ const integrationCards: { title: string; description: string; icon: LucideIcon }
   },
 ];
 
+const statsData = [
+  { value: "< 5 min", label: "para configurar e começar" },
+  { value: "100%", label: "mobile‑first" },
+  { value: "IA nativa", label: "integrada ao fluxo comercial" },
+  { value: "Zero", label: "setup complexo" },
+];
+
 const pricingPlans = [
   {
     name: "Starter",
-    price: "R$119/mês",
+    price: "R$119",
+    period: "/mês",
     description: "Para vendedores que querem mais controle no dia a dia.",
     features: [
       "CRM simples para leads",
+      "Pipeline Kanban básico",
       "Lembretes de follow-up",
-      "Mensagens com IA",
+      "Mensagens com IA (50/mês)",
+      "Templates de mensagem",
+      "Dashboard simples",
     ],
     highlighted: false,
+    cta: "Começar grátis",
   },
   {
     name: "Pro",
-    price: "R$199/mês",
+    price: "R$199",
+    period: "/mês",
     description: "Para quem quer vender com mais volume e mais consistência.",
     features: [
       "Tudo do Starter",
-      "Planejamento de campanhas no WhatsApp",
-      "Painel com oportunidades e prioridades",
+      "Mensagens com IA ilimitadas",
+      "Lead Scoring automático",
+      "Cadências automáticas",
+      "Análise de sentimento",
+      "Relatórios avançados",
+      "Integrações (Google, Zapier)",
+      "Suporte prioritário",
     ],
     highlighted: true,
+    cta: "Começar grátis",
   },
 ];
 
@@ -192,21 +320,42 @@ const faqs = [
   {
     question: "O LeadFlow AI é para equipes grandes?",
     answer:
-      "Não. O produto foi pensado para vendedores individuais e pequenos times que precisam de velocidade e simplicidade.",
+      "Não. O produto foi pensado para vendedores individuais e pequenos times que precisam de velocidade e simplicidade. Sem hierarquia, sem complexidade de CRM enterprise.",
   },
   {
     question: "Preciso configurar algo complexo para começar?",
     answer:
-      "Não. A proposta é justamente reduzir fricção: organizar leads, acompanhar follow-ups e vender mais sem setup complicado.",
+      "Não. A proposta é justamente reduzir fricção: organize leads em menos de 5 minutos, acompanhe follow-ups e venda mais sem setup complicado.",
   },
   {
     question: "A integração com WhatsApp já está pronta?",
     answer:
-      "Ainda não nesta fase. Primeiro estamos validando a experiência da landing page e, nas próximas fases, evoluiremos para autenticação, CRM e integrações.",
+      "Ainda não nesta fase. Primeiro estamos validando a experiência do produto e, nas próximas fases, evoluiremos para integração direta com WhatsApp via API oficial.",
+  },
+  {
+    question: "Como a IA gera as mensagens?",
+    answer:
+      "A IA usa o contexto do lead — histórico de conversa, estágio no pipeline, tags e notas — para sugerir mensagens personalizadas de abertura, follow-up e fechamento.",
+  },
+  {
+    question: "O que é Lead Scoring?",
+    answer:
+      "É uma pontuação automática que a IA atribui a cada lead com base no engajamento, tempo de resposta e progresso no pipeline. Assim você sabe exatamente quem está quente e pronto para fechar.",
+  },
+  {
+    question: "Posso cancelar quando quiser?",
+    answer:
+      "Sim. Não há fidelidade. Você pode cancelar a qualquer momento direto pela plataforma, sem burocracia.",
+  },
+  {
+    question: "Tem período de teste gratuito?",
+    answer:
+      "Sim. Você começa com 14 dias grátis sem precisar de cartão de crédito. Só cobra depois que você decidir continuar.",
   },
 ];
 
 const navItems = [
+  { href: "#como-funciona", label: "Como funciona" },
   { href: "#recursos", label: "Recursos" },
   { href: "#precos", label: "Preços" },
   { href: "#faq", label: "FAQ" },
@@ -445,6 +594,69 @@ function HeroPhonePreview() {
   );
 }
 
+function HeroMobileStats() {
+  return (
+    <div className="mt-8 grid grid-cols-2 gap-3 lg:hidden">
+      <div className="col-span-2 rounded-2xl border border-white/70 bg-white/85 p-4 shadow-sm backdrop-blur-sm">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+          Pipeline ao vivo
+        </p>
+        <div className="mt-2 flex items-center justify-between">
+          <p className="text-2xl font-semibold text-slate-900">8 leads quentes hoje</p>
+          <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
+            +23%
+          </span>
+        </div>
+      </div>
+
+      <div className="rounded-2xl border border-white/70 bg-white/85 p-4 shadow-sm backdrop-blur-sm">
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+            Follow-up
+          </p>
+          <span className="flex size-7 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+            <Clock3 className="size-3.5" />
+          </span>
+        </div>
+        <p className="mt-3 text-3xl font-semibold text-slate-900">14</p>
+        <p className="mt-1 text-xs text-slate-500">agendados para hoje</p>
+      </div>
+
+      <div className="rounded-2xl border border-white/70 bg-white/85 p-4 shadow-sm backdrop-blur-sm">
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+            Oportunidades
+          </p>
+          <span className="flex size-7 items-center justify-center rounded-full bg-sky-100 text-sky-700">
+            <Target className="size-3.5" />
+          </span>
+        </div>
+        <p className="mt-3 text-3xl font-semibold text-slate-900">12</p>
+        <p className="mt-1 text-xs text-slate-500">leads em negociação</p>
+      </div>
+
+      <div className="col-span-2 rounded-2xl border border-emerald-200/60 bg-emerald-500 p-4 shadow-sm">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-100">
+          Resposta com IA
+        </p>
+        <p className="mt-2 text-sm leading-5 text-white">
+          Consegue sim. Posso te mandar agora as melhores opções para decidir rápido.
+        </p>
+        <div className="mt-3 flex items-center gap-2">
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              className="hero-typing-dot size-2 rounded-full bg-emerald-200"
+              style={{ animationDelay: `${i * 0.16}s` }}
+            />
+          ))}
+          <span className="text-xs text-emerald-100">IA gerando resposta...</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main className="relative overflow-hidden">
@@ -473,7 +685,7 @@ export default function Home() {
               <Link href="#cta">Entrar</Link>
             </Button>
             <Button asChild>
-              <Link href="#cta">Testar grátis</Link>
+              <Link href="#cta">Testar 14 dias grátis</Link>
             </Button>
           </div>
 
@@ -481,6 +693,7 @@ export default function Home() {
         </div>
       </header>
 
+      {/* Hero */}
       <section
         id="hero"
         className="mx-auto max-w-6xl px-4 pb-6 pt-12 sm:px-6 sm:pb-8 sm:pt-16 lg:px-8 lg:pb-10 lg:pt-20"
@@ -498,42 +711,62 @@ export default function Home() {
               O copiloto de IA para vendedores que vivem no WhatsApp
             </h1>
             <p className="mt-5 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
-              Organize seus leads, crie mensagens com IA e acompanhe seus clientes
-              sem complicação.
+              Organize seus leads, crie mensagens com IA e acompanhe seus clientes sem
+              complicação. Feito para quem vende no dia a dia.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg" className="h-12 rounded-2xl">
                 <Link href="#cta">
-                  Testar grátis
+                  Testar 14 dias grátis
                   <ArrowRight className="size-4" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="secondary" className="h-12 rounded-2xl">
-                <Link href="#cta">Entrar</Link>
+                <Link href="#como-funciona">Ver como funciona</Link>
               </Button>
             </div>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               {[
-                "Feito para vendedor individual",
-                "Follow-ups no tempo certo",
-                "Mensagens prontas com IA",
+                "Sem cartão de crédito",
+                "Cancele quando quiser",
+                "Suporte em português",
               ].map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-white/70 bg-white/80 px-4 py-3 text-sm font-medium text-slate-700 shadow-sm"
+                  className="flex items-center gap-2 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 text-sm font-medium text-slate-700 shadow-sm"
                 >
+                  <Check className="size-4 shrink-0 text-emerald-600" />
                   {item}
                 </div>
               ))}
             </div>
+
+            <HeroMobileStats />
           </div>
 
-          <HeroPhonePreview />
+          <div className="hidden lg:flex">
+            <HeroPhonePreview />
+          </div>
         </div>
       </section>
 
+      {/* Stats banner */}
+      <section className={`${sectionClassName} mt-10 sm:mt-12`}>
+        <div className="rounded-2xl border border-white/70 bg-white/70 px-5 py-5 shadow-sm backdrop-blur-sm sm:px-8">
+          <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
+            {statsData.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <p className="text-xl font-semibold text-slate-900 sm:text-2xl">{stat.value}</p>
+                <p className="mt-1 text-xs text-slate-500">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Problema */}
       <section className={`${sectionClassName} ${sectionSpacingClassName}`}>
         <SectionHeading
           eyebrow="Problema"
@@ -556,6 +789,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Solução */}
       <section className={`${sectionClassName} ${sectionSpacingClassName}`}>
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
           <SectionHeading
@@ -580,6 +814,36 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Como funciona */}
+      <section id="como-funciona" className={`${sectionClassName} ${sectionSpacingClassName}`}>
+        <SectionHeading
+          eyebrow="Como funciona"
+          title="Do lead ao fechamento em três passos."
+          description="Sem curva de aprendizado longa. Em minutos você já tem sua operação comercial rodando com IA."
+          centered
+        />
+
+        <div className={`${sectionContentSpacingClassName} grid gap-8 sm:grid-cols-3`}>
+          {howItWorksSteps.map((step) => (
+            <div key={step.step}>
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-500 text-white shadow-lg shadow-emerald-500/30">
+                <step.icon className="size-6" />
+              </div>
+              <div className="mt-5">
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
+                  Passo {step.step}
+                </span>
+                <h3 className="mt-2 text-xl font-semibold tracking-tight text-slate-900">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-sm leading-7 text-slate-600">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Recursos */}
       <section id="recursos" className={`${sectionClassName} ${sectionSpacingClassName}`}>
         <SectionHeading
           eyebrow="Recursos"
@@ -588,18 +852,23 @@ export default function Home() {
           centered
         />
 
-        <div className={`${sectionContentSpacingClassName} grid gap-4 sm:grid-cols-2 xl:grid-cols-5`}>
+        <div
+          className={`${sectionContentSpacingClassName} grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4`}
+        >
           {featureCards.map((feature) => (
-            <Card key={feature.title} className="h-full">
+            <Card
+              key={feature.title}
+              className="h-full transition-transform duration-300 hover:-translate-y-1"
+            >
               <CardHeader className="gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-900 text-white">
+                <div
+                  className={`flex h-12 w-12 items-center justify-center rounded-2xl ${feature.bg} ${feature.color}`}
+                >
                   <feature.icon className="size-5" />
                 </div>
                 <div>
                   <CardTitle>{feature.title}</CardTitle>
-                  <CardDescription className="mt-2">
-                    {feature.description}
-                  </CardDescription>
+                  <CardDescription className="mt-2">{feature.description}</CardDescription>
                 </div>
               </CardHeader>
             </Card>
@@ -607,6 +876,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Benefícios e Integrações */}
       <section className={`${sectionClassName} ${sectionSpacingClassName}`}>
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-12">
           <div className="lg:sticky lg:top-24">
@@ -618,8 +888,8 @@ export default function Home() {
             </h2>
             <p className="mt-4 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
               A ideia é dar ao vendedor uma ferramenta prática, parecida com o ritmo do
-              WhatsApp, mas com organização, inteligência e integrações que economizam
-              tempo de verdade.
+              WhatsApp, mas com organização, inteligência e integrações que economizam tempo
+              de verdade.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -657,7 +927,9 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={`${sectionContentSpacingClassName} rounded-[2rem] border border-white/70 bg-white/70 p-5 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.28)] backdrop-blur-sm sm:p-6`}>
+        <div
+          className={`${sectionContentSpacingClassName} rounded-[2rem] border border-white/70 bg-white/70 p-5 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.28)] backdrop-blur-sm sm:p-6`}
+        >
           <div className="max-w-2xl">
             <span className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-slate-700">
               Integrações pensadas para vender
@@ -667,8 +939,8 @@ export default function Home() {
             </h3>
             <p className="mt-3 text-base leading-7 text-slate-600">
               Integrações pensadas para reduzir atrito na rotina comercial, conectar as
-              ferramentas certas e ajudar o vendedor a acompanhar cada oportunidade com
-              mais contexto e velocidade.
+              ferramentas certas e ajudar o vendedor a acompanhar cada oportunidade com mais
+              contexto e velocidade.
             </p>
           </div>
 
@@ -684,9 +956,7 @@ export default function Home() {
                   </div>
                   <div>
                     <CardTitle>{item.title}</CardTitle>
-                    <CardDescription className="mt-2">
-                      {item.description}
-                    </CardDescription>
+                    <CardDescription className="mt-2">{item.description}</CardDescription>
                   </div>
                 </CardHeader>
               </Card>
@@ -695,11 +965,12 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Preços */}
       <section id="precos" className={`${sectionClassName} ${sectionSpacingClassName}`}>
         <SectionHeading
           eyebrow="Preços"
           title="Planos simples para começar rápido."
-          description="Sem estrutura enterprise e sem custo desnecessário. Escolha o plano ideal para vender com mais constância."
+          description="14 dias grátis em qualquer plano. Sem cartão de crédito, sem burocracia."
           centered
         />
 
@@ -733,9 +1004,16 @@ export default function Home() {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="flex items-end gap-2">
-                  <span className={`text-4xl font-semibold ${plan.highlighted ? "text-white" : "text-slate-900"}`}>
+                <div className="flex items-end gap-1">
+                  <span
+                    className={`text-4xl font-semibold ${plan.highlighted ? "text-white" : "text-slate-900"}`}
+                  >
                     {plan.price}
+                  </span>
+                  <span
+                    className={`mb-1 text-base ${plan.highlighted ? "text-slate-400" : "text-slate-500"}`}
+                  >
+                    {plan.period}
                   </span>
                 </div>
 
@@ -761,14 +1039,21 @@ export default function Home() {
                   variant={plan.highlighted ? "default" : "secondary"}
                   className={`mt-8 h-12 w-full rounded-2xl ${plan.highlighted ? "" : "bg-slate-900 text-white hover:bg-slate-800"}`}
                 >
-                  <Link href="#cta">Começar agora</Link>
+                  <Link href="#cta">{plan.cta}</Link>
                 </Button>
+
+                <p
+                  className={`mt-3 text-center text-xs ${plan.highlighted ? "text-slate-400" : "text-slate-500"}`}
+                >
+                  14 dias grátis · Cancele quando quiser
+                </p>
               </CardContent>
             </Card>
           ))}
         </div>
       </section>
 
+      {/* FAQ */}
       <section
         id="faq"
         className={`mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 ${sectionSpacingClassName}`}
@@ -792,6 +1077,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CTA */}
       <section
         id="cta"
         className={`mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 ${sectionSpacingClassName} mb-14 sm:mb-16 lg:mb-20`}
@@ -803,14 +1089,14 @@ export default function Home() {
 
             <div className="relative mx-auto max-w-3xl text-center">
               <span className="inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300">
-                Fase 1
+                14 dias grátis
               </span>
               <h2 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
                 Comece a vender com mais consistência no WhatsApp.
               </h2>
               <p className="mt-4 text-base leading-7 text-slate-300 sm:text-lg">
-                LeadFlow AI foi pensado para quem quer simplicidade, agilidade e foco
-                total em fechar mais vendas.
+                LeadFlow AI foi pensado para quem quer simplicidade, agilidade e foco total
+                em fechar mais vendas. Sem cartão de crédito para começar.
               </p>
 
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
@@ -826,15 +1112,31 @@ export default function Home() {
                   <Link href="#precos">Ver preços</Link>
                 </Button>
               </div>
+
+              <p className="mt-4 text-sm text-slate-400">
+                Sem cartão de crédito · Cancele quando quiser · Suporte em português
+              </p>
             </div>
           </div>
         </Card>
       </section>
 
       <footer className="border-t border-white/60 bg-white/60">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-6 text-sm text-slate-500 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-          <p>LeadFlow AI</p>
-          <p>Landing page fase 1 para validação do produto.</p>
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+          <div>
+            <p className="font-semibold text-slate-900">LeadFlow AI</p>
+            <p className="mt-0.5 text-sm text-slate-500">
+              O copiloto de IA para vendedores do WhatsApp.
+            </p>
+          </div>
+          <nav className="flex flex-wrap gap-6 text-sm text-slate-500">
+            {navItems.map((item) => (
+              <Link key={item.href} href={item.href} className="transition hover:text-slate-900">
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <p className="text-sm text-slate-400">© 2025 LeadFlow AI</p>
         </div>
       </footer>
     </main>
