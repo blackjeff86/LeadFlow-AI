@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "benchmark-agents": {
+      "source": "vercel-labs/vercel-plugin",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/benchmark-agents/SKILL.md",
+      "computedHash": "f609c9adde425ef88aa64b16233e28cc0e0812f085ebf7c35f974b803b364a30"
+    },
+    "ui-ux-pro-max": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/ui-ux-pro-max/SKILL.md",
+      "computedHash": "6337038fe1fe6bbe1b9f252ab678ee575859190bab6f0f246f4061824eb40875"
+    }
+  }
+}

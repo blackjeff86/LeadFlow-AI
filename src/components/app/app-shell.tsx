@@ -10,6 +10,7 @@ import {
   ClipboardList,
   Home,
   Menu,
+  MessageCircleMore,
   MessageSquareText,
   Search,
   Settings,
@@ -36,6 +37,7 @@ type AppShellProps = {
 const primaryNavItems = [
   { href: "/painel", label: "Painel", icon: Home },
   { href: "/painel/leads", label: "Leads", icon: UserRound },
+  { href: "/painel/conversas", label: "Conversas", icon: MessageCircleMore },
   { href: "/painel/pipeline", label: "Pipeline", icon: ChartColumnBig },
   { href: "/painel/tarefas", label: "Tarefas", icon: ClipboardList },
 ];
@@ -252,7 +254,7 @@ export function AppShell({ children }: AppShellProps) {
           <main className="flex-1 px-4 pb-28 pt-5 sm:px-6 sm:pb-8 lg:px-8 lg:pt-8">{children}</main>
 
           <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-white/70 bg-white/92 px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl lg:hidden">
-            <div className="mx-auto grid max-w-xl grid-cols-4 gap-2">
+            <div className="mx-auto grid max-w-xl grid-cols-5 gap-2">
               {primaryNavItems.map((item) => {
                 const active = isCurrentPath(pathname, item.href);
 

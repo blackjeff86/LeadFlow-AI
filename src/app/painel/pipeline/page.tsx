@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowRight,
   ArrowUpRight,
@@ -13,134 +15,9 @@ import {
   TrendingUp,
 } from "lucide-react";
 
+import { useWorkspaceData } from "@/components/app/workspace-data-provider";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { crmLeads } from "@/lib/mock-crm-data";
-
-const pipelineStats = [
-  {
-    label: "Oportunidades ativas",
-    value: String(crmLeads.length),
-    detail: "18 avançaram nesta semana",
-    icon: Target,
-    tone: "bg-emerald-100 text-emerald-700",
-  },
-  {
-    label: "Valor em aberto",
-    value: `R$ ${Math.round(crmLeads.reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
-    detail: "pipeline atual estimado",
-    icon: DollarSign,
-    tone: "bg-sky-100 text-sky-700",
-  },
-  {
-    label: "Taxa de avanço",
-    value: "38%",
-    detail: "entre contato e proposta",
-    icon: TrendingUp,
-    tone: "bg-amber-100 text-amber-700",
-  },
-];
-
-const stageSummary = [
-  {
-    title: "Novo",
-    count: crmLeads.filter((lead) => lead.stage === "Novo").length,
-    amount: `R$ ${Math.round(crmLeads.filter((lead) => lead.stage === "Novo").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
-    tone: "bg-slate-900",
-    width: "w-[92%]",
-  },
-  {
-    title: "Em contato",
-    count: crmLeads.filter((lead) => lead.stage === "Em contato").length,
-    amount: `R$ ${Math.round(crmLeads.filter((lead) => lead.stage === "Em contato").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
-    tone: "bg-sky-500",
-    width: "w-[78%]",
-  },
-  {
-    title: "Proposta enviada",
-    count: crmLeads.filter((lead) => lead.stage === "Proposta enviada").length,
-    amount: `R$ ${Math.round(crmLeads.filter((lead) => lead.stage === "Proposta enviada").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
-    tone: "bg-amber-500",
-    width: "w-[64%]",
-  },
-  {
-    title: "Negociação",
-    count: crmLeads.filter((lead) => lead.stage === "Negociação").length,
-    amount: `R$ ${Math.round(crmLeads.filter((lead) => lead.stage === "Negociação").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
-    tone: "bg-emerald-500",
-    width: "w-[42%]",
-  },
-  {
-    title: "Fechamento",
-    count: crmLeads.filter((lead) => lead.stage === "Fechamento").length,
-    amount: `R$ ${Math.round(crmLeads.filter((lead) => lead.stage === "Fechamento").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
-    tone: "bg-rose-500",
-    width: "w-[20%]",
-  },
-];
-
-const stageColumns = [
-  {
-    title: "Novo",
-    count: crmLeads.filter((lead) => lead.stage === "Novo").length,
-    amount: `R$ ${Math.round(crmLeads.filter((lead) => lead.stage === "Novo").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
-    accent: "border-slate-200 bg-slate-50/80",
-    dot: "bg-slate-900",
-    items: crmLeads
-      .filter((lead) => lead.stage === "Novo")
-      .map((lead) => ({
-        lead: lead.name,
-        company: lead.company,
-        note: lead.summary,
-        nextStep: lead.nextAction,
-      })),
-  },
-  {
-    title: "Em contato",
-    count: crmLeads.filter((lead) => lead.stage === "Em contato").length,
-    amount: `R$ ${Math.round(crmLeads.filter((lead) => lead.stage === "Em contato").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
-    accent: "border-sky-200 bg-sky-50/80",
-    dot: "bg-sky-500",
-    items: crmLeads
-      .filter((lead) => lead.stage === "Em contato")
-      .map((lead) => ({
-        lead: lead.name,
-        company: lead.company,
-        note: lead.summary,
-        nextStep: lead.nextAction,
-      })),
-  },
-  {
-    title: "Proposta enviada",
-    count: crmLeads.filter((lead) => lead.stage === "Proposta enviada").length,
-    amount: `R$ ${Math.round(crmLeads.filter((lead) => lead.stage === "Proposta enviada").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
-    accent: "border-amber-200 bg-amber-50/80",
-    dot: "bg-amber-500",
-    items: crmLeads
-      .filter((lead) => lead.stage === "Proposta enviada")
-      .map((lead) => ({
-        lead: lead.name,
-        company: lead.company,
-        note: lead.summary,
-        nextStep: lead.nextAction,
-      })),
-  },
-  {
-    title: "Negociação",
-    count: crmLeads.filter((lead) => lead.stage === "Negociação").length,
-    amount: `R$ ${Math.round(crmLeads.filter((lead) => lead.stage === "Negociação").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
-    accent: "border-emerald-200 bg-emerald-50/80",
-    dot: "bg-emerald-500",
-    items: crmLeads
-      .filter((lead) => lead.stage === "Negociação")
-      .map((lead) => ({
-        lead: lead.name,
-        company: lead.company,
-        note: lead.summary,
-        nextStep: lead.nextAction,
-      })),
-  },
-];
 
 const pipelineInsights = [
   "A maior concentração de valor está entre contato e proposta enviada.",
@@ -161,6 +38,10 @@ const conversionSignals = [
     title: "Ação recomendada",
     detail: "Transformar cada cartão em uma próxima tarefa acionável melhora a cadência.",
   },
+  {
+    title: "Responsabilidade por setor",
+    detail: "A conversa precisa mostrar quando ainda está no comercial e quando já passou para fechamento.",
+  },
 ];
 
 function OpportunityCard({
@@ -168,15 +49,29 @@ function OpportunityCard({
   company,
   note,
   nextStep,
+  sector,
+  conversationStatus,
 }: {
   lead: string;
   company: string;
   note: string;
   nextStep: string;
+  sector: string;
+  conversationStatus: string;
 }) {
   return (
     <div className="rounded-[1.5rem] border border-white/80 bg-white/92 p-4 shadow-sm">
-      <p className="text-base font-semibold text-slate-900">{lead}</p>
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <p className="text-base font-semibold text-slate-900">{lead}</p>
+        <div className="flex flex-wrap gap-2">
+          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+            {sector}
+          </span>
+          <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
+            {conversationStatus}
+          </span>
+        </div>
+      </div>
       <p className="mt-1 text-sm text-slate-500">{company}</p>
       <p className="mt-3 text-sm leading-6 text-slate-600">{note}</p>
       <div className="mt-4 flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-3 py-3">
@@ -193,6 +88,146 @@ function OpportunityCard({
 }
 
 export default function PipelinePage() {
+  const { leads, threads } = useWorkspaceData();
+
+  function getConversationMeta(leadId: string) {
+    const thread = threads.find((item) => item.leadId === leadId);
+
+    return {
+      sector: thread?.activeSector ?? "Comercial",
+      conversationStatus: thread?.status ?? "Em andamento",
+    };
+  }
+
+  const pipelineStats = [
+    {
+      label: "Oportunidades ativas",
+      value: String(leads.length),
+      detail: "18 avançaram nesta semana",
+      icon: Target,
+      tone: "bg-emerald-100 text-emerald-700",
+    },
+    {
+      label: "Valor em aberto",
+      value: `R$ ${Math.round(leads.reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
+      detail: "pipeline atual estimado",
+      icon: DollarSign,
+      tone: "bg-sky-100 text-sky-700",
+    },
+    {
+      label: "Taxa de avanço",
+      value: "38%",
+      detail: "entre contato e proposta",
+      icon: TrendingUp,
+      tone: "bg-amber-100 text-amber-700",
+    },
+  ];
+
+  const stageSummary = [
+    {
+      title: "Novo",
+      count: leads.filter((lead) => lead.stage === "Novo").length,
+      amount: `R$ ${Math.round(leads.filter((lead) => lead.stage === "Novo").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
+      tone: "bg-slate-900",
+      width: "w-[92%]",
+    },
+    {
+      title: "Em contato",
+      count: leads.filter((lead) => lead.stage === "Em contato").length,
+      amount: `R$ ${Math.round(leads.filter((lead) => lead.stage === "Em contato").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
+      tone: "bg-sky-500",
+      width: "w-[78%]",
+    },
+    {
+      title: "Proposta enviada",
+      count: leads.filter((lead) => lead.stage === "Proposta enviada").length,
+      amount: `R$ ${Math.round(leads.filter((lead) => lead.stage === "Proposta enviada").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
+      tone: "bg-amber-500",
+      width: "w-[64%]",
+    },
+    {
+      title: "Negociação",
+      count: leads.filter((lead) => lead.stage === "Negociação").length,
+      amount: `R$ ${Math.round(leads.filter((lead) => lead.stage === "Negociação").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
+      tone: "bg-emerald-500",
+      width: "w-[42%]",
+    },
+    {
+      title: "Fechamento",
+      count: leads.filter((lead) => lead.stage === "Fechamento").length,
+      amount: `R$ ${Math.round(leads.filter((lead) => lead.stage === "Fechamento").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
+      tone: "bg-rose-500",
+      width: "w-[20%]",
+    },
+  ];
+
+  const stageColumns = [
+    {
+      title: "Novo",
+      count: leads.filter((lead) => lead.stage === "Novo").length,
+      amount: `R$ ${Math.round(leads.filter((lead) => lead.stage === "Novo").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
+      accent: "border-slate-200 bg-slate-50/80",
+      dot: "bg-slate-900",
+      items: leads
+        .filter((lead) => lead.stage === "Novo")
+        .map((lead) => ({
+          lead: lead.name,
+          company: lead.company,
+          note: lead.summary,
+          nextStep: lead.nextAction,
+          ...getConversationMeta(lead.id),
+        })),
+    },
+    {
+      title: "Em contato",
+      count: leads.filter((lead) => lead.stage === "Em contato").length,
+      amount: `R$ ${Math.round(leads.filter((lead) => lead.stage === "Em contato").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
+      accent: "border-sky-200 bg-sky-50/80",
+      dot: "bg-sky-500",
+      items: leads
+        .filter((lead) => lead.stage === "Em contato")
+        .map((lead) => ({
+          lead: lead.name,
+          company: lead.company,
+          note: lead.summary,
+          nextStep: lead.nextAction,
+          ...getConversationMeta(lead.id),
+        })),
+    },
+    {
+      title: "Proposta enviada",
+      count: leads.filter((lead) => lead.stage === "Proposta enviada").length,
+      amount: `R$ ${Math.round(leads.filter((lead) => lead.stage === "Proposta enviada").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
+      accent: "border-amber-200 bg-amber-50/80",
+      dot: "bg-amber-500",
+      items: leads
+        .filter((lead) => lead.stage === "Proposta enviada")
+        .map((lead) => ({
+          lead: lead.name,
+          company: lead.company,
+          note: lead.summary,
+          nextStep: lead.nextAction,
+          ...getConversationMeta(lead.id),
+        })),
+    },
+    {
+      title: "Negociação",
+      count: leads.filter((lead) => lead.stage === "Negociação").length,
+      amount: `R$ ${Math.round(leads.filter((lead) => lead.stage === "Negociação").reduce((sum, lead) => sum + lead.pipelineValueNumber, 0) / 1000)} mil`,
+      accent: "border-emerald-200 bg-emerald-50/80",
+      dot: "bg-emerald-500",
+      items: leads
+        .filter((lead) => lead.stage === "Negociação")
+        .map((lead) => ({
+          lead: lead.name,
+          company: lead.company,
+          note: lead.summary,
+          nextStep: lead.nextAction,
+          ...getConversationMeta(lead.id),
+        })),
+    },
+  ];
+
   return (
     <div className="space-y-5 sm:space-y-6">
       <section className="grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">

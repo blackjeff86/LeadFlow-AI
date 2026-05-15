@@ -1,3 +1,5 @@
+"use client";
+
 import {
   AlarmClockCheck,
   ArrowUpRight,
@@ -11,38 +13,14 @@ import {
   Target,
 } from "lucide-react";
 
+import { useWorkspaceData } from "@/components/app/workspace-data-provider";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { crmLeads } from "@/lib/mock-crm-data";
-
-const taskStats = [
-  {
-    label: "Tarefas abertas",
-    value: String(crmLeads.length),
-    detail: "14 para hoje",
-    icon: ListTodo,
-    tone: "bg-emerald-100 text-emerald-700",
-  },
-  {
-    label: "Atrasadas",
-    value: String(crmLeads.filter((lead) => lead.taskStatus === "Atrasada").length),
-    detail: "precisam de ação imediata",
-    icon: AlarmClockCheck,
-    tone: "bg-rose-100 text-rose-700",
-  },
-  {
-    label: "Concluídas hoje",
-    value: "11",
-    detail: "4 vieram da IA",
-    icon: CheckCheck,
-    tone: "bg-sky-100 text-sky-700",
-  },
-];
 
 const focusCards = [
   {
     title: "Prioridade máxima",
-    value: `${crmLeads.filter((lead) => lead.taskStatus === "Atrasada").length} follow-ups vencidos`,
+    value: "Follow-ups vencidos",
     detail: "Todos entre proposta e negociação.",
   },
   {
@@ -54,54 +32,6 @@ const focusCards = [
     title: "Meta do dia",
     value: "Zerar atrasos",
     detail: "e mover 3 leads de etapa.",
-  },
-];
-
-const taskColumns = [
-  {
-    title: "Atrasadas",
-    eyebrow: "Resolver primeiro",
-    accent: "border-rose-200 bg-rose-50/70",
-    badge: `${crmLeads.filter((lead) => lead.taskStatus === "Atrasada").length} urgentes`,
-    items: crmLeads
-      .filter((lead) => lead.taskStatus === "Atrasada")
-      .map((lead) => ({
-        lead: lead.name,
-        type: lead.taskType,
-        due: lead.taskDue,
-        summary: lead.taskSummary,
-        action: lead.taskAction,
-      })),
-  },
-  {
-    title: "Hoje",
-    eyebrow: "Rotina do dia",
-    accent: "border-amber-200 bg-amber-50/70",
-    badge: `${crmLeads.filter((lead) => lead.taskStatus === "Hoje").length} programadas`,
-    items: crmLeads
-      .filter((lead) => lead.taskStatus === "Hoje")
-      .map((lead) => ({
-        lead: lead.name,
-        type: lead.taskType,
-        due: lead.taskDue,
-        summary: lead.taskSummary,
-        action: lead.taskAction,
-      })),
-  },
-  {
-    title: "Próximas",
-    eyebrow: "Em seguida",
-    accent: "border-emerald-200 bg-emerald-50/70",
-    badge: `${crmLeads.filter((lead) => lead.taskStatus === "Próxima").length} agendadas`,
-    items: crmLeads
-      .filter((lead) => lead.taskStatus === "Próxima")
-      .map((lead) => ({
-        lead: lead.name,
-        type: lead.taskType,
-        due: lead.taskDue,
-        summary: lead.taskSummary,
-        action: lead.taskAction,
-      })),
   },
 ];
 
@@ -140,6 +70,102 @@ function TaskTypeBadge({ value }: { value: string }) {
 }
 
 export default function TarefasPage() {
+  const { leads, threads } = useWorkspaceData();
+
+  function getTaskConversationMeta(leadId: string) {
+    const thread = threads.find((item) => item.leadId === leadId);
+
+    return {
+      sector: thread?.activeSector ?? "Comercial",
+      conversationStatus: thread?.status ?? "Em andamento",
+    };
+  }
+
+  const taskStats = [
+    {
+      label: "Tarefas abertas",
+      value: String(leads.length),
+      detail: "14 para hoje",
+      icon: ListTodo,
+      tone: "bg-emerald-100 text-emerald-700",
+    },
+    {
+      label: "Atrasadas",
+      value: String(leads.filter((lead) => lead.taskStatus === "Atrasada").length),
+      detail: "precisam de ação imediata",
+      icon: AlarmClockCheck,
+      tone: "bg-rose-100 text-rose-700",
+    },
+    {
+      label: "Concluídas hoje",
+      value: "11",
+      detail: "4 vieram da IA",
+      icon: CheckCheck,
+      tone: "bg-sky-100 text-sky-700",
+    },
+  ];
+
+  const dynamicFocusCards = [
+    {
+      title: "Prioridade máxima",
+      value: `${leads.filter((lead) => lead.taskStatus === "Atrasada").length} follow-ups vencidos`,
+      detail: "Todos entre proposta e negociação.",
+    },
+    focusCards[1],
+    focusCards[2],
+  ];
+
+  const taskColumns = [
+    {
+      title: "Atrasadas",
+      eyebrow: "Resolver primeiro",
+      accent: "border-rose-200 bg-rose-50/70",
+      badge: `${leads.filter((lead) => lead.taskStatus === "Atrasada").length} urgentes`,
+      items: leads
+        .filter((lead) => lead.taskStatus === "Atrasada")
+        .map((lead) => ({
+          lead: lead.name,
+          type: lead.taskType,
+          due: lead.taskDue,
+          summary: lead.taskSummary,
+          action: lead.taskAction,
+          ...getTaskConversationMeta(lead.id),
+        })),
+    },
+    {
+      title: "Hoje",
+      eyebrow: "Rotina do dia",
+      accent: "border-amber-200 bg-amber-50/70",
+      badge: `${leads.filter((lead) => lead.taskStatus === "Hoje").length} programadas`,
+      items: leads
+        .filter((lead) => lead.taskStatus === "Hoje")
+        .map((lead) => ({
+          lead: lead.name,
+          type: lead.taskType,
+          due: lead.taskDue,
+          summary: lead.taskSummary,
+          action: lead.taskAction,
+          ...getTaskConversationMeta(lead.id),
+        })),
+    },
+    {
+      title: "Próximas",
+      eyebrow: "Em seguida",
+      accent: "border-emerald-200 bg-emerald-50/70",
+      badge: `${leads.filter((lead) => lead.taskStatus === "Próxima").length} agendadas`,
+      items: leads
+        .filter((lead) => lead.taskStatus === "Próxima")
+        .map((lead) => ({
+          lead: lead.name,
+          type: lead.taskType,
+          due: lead.taskDue,
+          summary: lead.taskSummary,
+          action: lead.taskAction,
+          ...getTaskConversationMeta(lead.id),
+        })),
+    },
+  ];
+
   return (
     <div className="space-y-5 sm:space-y-6">
       <section className="grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">
@@ -168,7 +194,7 @@ export default function TarefasPage() {
               </div>
 
               <div className="grid gap-3 sm:grid-cols-3">
-                {focusCards.map((card) => (
+                {dynamicFocusCards.map((card) => (
                   <div
                     key={card.title}
                     className="rounded-[1.5rem] border border-white/10 bg-white/10 p-4 backdrop-blur-sm"
@@ -308,6 +334,16 @@ export default function TarefasPage() {
                           <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-2 text-emerald-700">
                             <MessageSquareText className="size-4" />
                             {item.action}
+                          </div>
+                          <div className="inline-flex items-center gap-2 rounded-full bg-sky-50 px-3 py-2 text-sky-700">
+                            <span className="text-xs font-semibold uppercase tracking-[0.16em]">
+                              {item.sector}
+                            </span>
+                          </div>
+                          <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-slate-600 ring-1 ring-slate-200">
+                            <span className="text-xs font-semibold uppercase tracking-[0.16em]">
+                              {item.conversationStatus}
+                            </span>
                           </div>
                         </div>
 

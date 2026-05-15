@@ -1,6 +1,9 @@
 export type LeadTemperature = "Muito quente" | "Quente" | "Morno";
 export type LeadStage = "Novo" | "Em contato" | "Proposta enviada" | "Negociação" | "Fechamento";
 export type TaskStatus = "Atrasada" | "Hoje" | "Próxima";
+export type ConversationChannel = "WhatsApp" | "Instagram" | "Site";
+export type ConversationStatus = "Aguardando resposta" | "Em andamento" | "Pronto para fechar";
+export type ConversationSector = "Comercial" | "Fechamento" | "Onboarding";
 
 export type LeadRecord = {
   id: string;
@@ -26,6 +29,30 @@ export type LeadRecord = {
   messageIdealTime: string;
   messageContext: string;
   messageDraft: string;
+};
+
+export type ConversationMessage = {
+  sender: "lead" | "seller" | "ai";
+  text: string;
+  time: string;
+  sector?: ConversationSector;
+  internal?: boolean;
+};
+
+export type ConversationThread = {
+  id: string;
+  leadId: string;
+  channel: ConversationChannel;
+  status: ConversationStatus;
+  unreadCount: number;
+  preview: string;
+  lastMessageAt: string;
+  aiSummary: string;
+  suggestedAction: string;
+  activeSector: ConversationSector;
+  sectorQueue: ConversationSector[];
+  sectorOwner: string;
+  messages: ConversationMessage[];
 };
 
 export const crmLeads: LeadRecord[] = [
@@ -337,5 +364,141 @@ export const messageTemplateLibrary = [
   {
     title: "Fechamento",
     detail: "Texto com CTA claro para puxar decisão ainda no mesmo dia.",
+  },
+];
+
+export const conversationThreads: ConversationThread[] = [
+  {
+    id: "thread-vanessa-rocha",
+    leadId: "lead-vanessa-rocha",
+    channel: "WhatsApp",
+    status: "Pronto para fechar",
+    unreadCount: 2,
+    preview: "Se você conseguir melhorar a condição, eu consigo decidir hoje.",
+    lastMessageAt: "09:12",
+    aiSummary:
+      "Lead em proposta enviada, com urgência alta e boa intenção de compra. O ponto central da conversa é condição comercial para fechamento ainda hoje.",
+    suggestedAction: "Responder com condição especial e CTA de fechamento",
+    activeSector: "Fechamento",
+    sectorQueue: ["Comercial", "Fechamento", "Onboarding"],
+    sectorOwner: "Luan Freire",
+    messages: [
+      {
+        sender: "lead",
+        text: "Gostei bastante da proposta, mas preciso de uma condição melhor para conseguir avançar hoje.",
+        time: "08:54",
+      },
+      {
+        sender: "seller",
+        text: "Perfeito, Vanessa. Vou revisar isso agora e já te retorno com a melhor condição possível.",
+        time: "08:58",
+        sector: "Comercial",
+      },
+      {
+        sender: "seller",
+        text: "Passando para o setor de fechamento porque a lead já sinalizou decisão para hoje.",
+        time: "09:00",
+        sector: "Comercial",
+        internal: true,
+      },
+      {
+        sender: "lead",
+        text: "Se você conseguir melhorar a condição, eu consigo decidir hoje.",
+        time: "09:12",
+      },
+    ],
+  },
+  {
+    id: "thread-clinica-nexo",
+    leadId: "lead-clinica-nexo",
+    channel: "WhatsApp",
+    status: "Aguardando resposta",
+    unreadCount: 0,
+    preview: "Pode me resumir a forma mais simples de seguir com isso?",
+    lastMessageAt: "Ontem, 18:40",
+    aiSummary:
+      "Conversa esfriou depois da proposta. O lead ainda parece interessado, mas precisa de uma retomada objetiva e sem peso.",
+    suggestedAction: "Enviar retomada curta às 13:00",
+    activeSector: "Comercial",
+    sectorQueue: ["Comercial", "Fechamento", "Onboarding"],
+    sectorOwner: "Jeffe",
+    messages: [
+      {
+        sender: "seller",
+        text: "Enviei a proposta com os principais cenários para você comparar com calma.",
+        time: "Ontem, 17:55",
+        sector: "Comercial",
+      },
+      {
+        sender: "lead",
+        text: "Pode me resumir a forma mais simples de seguir com isso?",
+        time: "Ontem, 18:40",
+      },
+      {
+        sender: "ai",
+        text: "Sugestão: retomar com mensagem curta, destacando simplicidade e próximo passo.",
+        time: "Hoje, 08:10",
+      },
+    ],
+  },
+  {
+    id: "thread-carlos-mendes",
+    leadId: "lead-carlos-mendes",
+    channel: "WhatsApp",
+    status: "Em andamento",
+    unreadCount: 1,
+    preview: "Qual seria o prazo real de implantação no meu caso?",
+    lastMessageAt: "há 8 min",
+    aiSummary:
+      "Lead com boa intenção, mas travado por dúvida operacional. Resposta clara sobre prazo pode destravar o avanço da conversa.",
+    suggestedAction: "Responder com prazo e onboarding simplificado",
+    activeSector: "Comercial",
+    sectorQueue: ["Comercial", "Fechamento", "Onboarding"],
+    sectorOwner: "Jeffe",
+    messages: [
+      {
+        sender: "lead",
+        text: "Gostei da ideia, mas preciso entender se a implantação não vai virar mais trabalho para o time.",
+        time: "09:47",
+      },
+      {
+        sender: "seller",
+        text: "Faz sentido. Posso te mostrar o caminho mais simples de começar sem travar a rotina.",
+        time: "09:50",
+        sector: "Comercial",
+      },
+      {
+        sender: "lead",
+        text: "Qual seria o prazo real de implantação no meu caso?",
+        time: "há 8 min",
+      },
+    ],
+  },
+  {
+    id: "thread-studio-a7",
+    leadId: "lead-studio-a7",
+    channel: "Instagram",
+    status: "Aguardando resposta",
+    unreadCount: 1,
+    preview: "Quero entender melhor como isso funciona no dia a dia.",
+    lastMessageAt: "há 29 min",
+    aiSummary:
+      "Lead novo vindo de anúncio, com curiosidade real e boa janela para primeiro contato ainda pela manhã.",
+    suggestedAction: "Abrir conversa com explicação curta e CTA",
+    activeSector: "Comercial",
+    sectorQueue: ["Comercial", "Fechamento", "Onboarding"],
+    sectorOwner: "Jeffe",
+    messages: [
+      {
+        sender: "lead",
+        text: "Quero entender melhor como isso funciona no dia a dia.",
+        time: "há 29 min",
+      },
+      {
+        sender: "ai",
+        text: "Sugestão: responder com visão prática e convite para continuar no WhatsApp.",
+        time: "há 21 min",
+      },
+    ],
   },
 ];

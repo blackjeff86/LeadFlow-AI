@@ -12,6 +12,40 @@ A proposta central é simples: **dar ao vendedor o que ele precisa para não per
 
 ---
 
+## Status atual do protótipo (15 de maio de 2026)
+
+**Objetivo deste momento:** transformar a proposta em um workspace navegável, coerente e pronto para validação visual e conversacional antes de entrar em login e backend.
+
+### Já concluído no protótipo
+- [x] Shell principal do produto com navegação mobile-first
+- [x] Painel com visão geral da operação
+- [x] Tela de leads com base visual de CRM
+- [x] Tela de tarefas com rotina operacional e follow-ups
+- [x] Tela de pipeline com leitura por estágio
+- [x] Tela de mensagens IA com sugestões e biblioteca inicial
+- [x] Tela de configurações para preferências, IA e operação
+- [x] Tela de conversas como inbox comercial central
+- [x] Dados mockados compartilhados entre áreas do workspace
+- [x] Multichat por setor em um único número
+- [x] Transferência visual entre comercial, fechamento e onboarding
+- [x] Reflexo da transferência entre conversas, pipeline e tarefas
+
+### Decisões de produto já assumidas
+- [x] Priorizar inbox comercial antes de login
+- [x] Posicionar conversa como centro da operação, não só como complemento do CRM
+- [x] Tratar multichat por setor como diferencial estratégico do produto
+- [x] Manter o produto mobile-first e orientado ao WhatsApp
+
+### Próximos passos recomendados
+- [ ] Refinar regras de handoff entre setores com mais clareza operacional
+- [ ] Definir se o setor é invisível ou explícito para o cliente final
+- [ ] Simular SLAs, fila por responsável e criação automática de tarefa por transferência
+- [ ] Preparar a transição do mock compartilhado para persistência real
+- [ ] Só depois abrir a frente de autenticação e acesso
+- [ ] Validar com usuários se a central de conversas realmente aumenta percepção de controle e produtividade
+
+---
+
 ## Fase 0 — Validação (atual)
 
 **Objetivo:** Validar a proposta de valor antes de construir o produto.
@@ -29,8 +63,24 @@ A proposta central é simples: **dar ao vendedor o que ele precisa para não per
 
 ### O que não fazer ainda
 - Construir autenticação ou banco de dados
-- Integrar com WhatsApp
 - Qualquer infraestrutura de backend
+
+### Entregas de protótipo já feitas dentro da validação
+- [x] Construir uma primeira experiência navegável do workspace comercial
+- [x] Estruturar a narrativa de CRM + tarefas + pipeline + IA
+- [x] Materializar uma inbox comercial antes do login
+- [x] Demonstrar o conceito de multichat por setor no mesmo número
+- [x] Conectar visualmente conversa, pipeline e tarefa no mesmo fluxo
+
+### Ajuste de prioridade após benchmark de mercado (15 de maio de 2026)
+- [ ] Validar uma **inbox comercial / central de conversas** antes do login
+- [ ] Testar se o vendedor percebe valor em agir direto da conversa: responder, criar follow-up, mover etapa e usar IA
+- [ ] Verificar se **templates + cadências + contexto do lead** aumentam a sensação de controle no dia a dia
+- [ ] Validar o diferencial de **multichat por setor em um único número** para operação com comercial, fechamento e onboarding
+
+### Leitura de mercado usada nesta priorização
+- Players como **Kommo**, **RD Station CRM**, **Agendor**, **HubSpot**, **respond.io** e **Trengo** convergem em um padrão: CRM sozinho não basta; o valor percebido cresce quando existe **conversa centralizada**, **automação simples**, **IA aplicada à rotina** e **contexto do lead dentro da inbox**.
+- Para o LeadFlow AI, isso indica que a próxima peça mais importante não é autenticação, mas sim uma experiência que una **WhatsApp / conversa + CRM + follow-up + IA**.
 
 ---
 
@@ -41,11 +91,20 @@ A proposta central é simples: **dar ao vendedor o que ele precisa para não per
 ### Funcionalidades essenciais
 - [ ] **Autenticação** — Login com e-mail ou Google (Supabase Auth / NextAuth)
 - [ ] **CRM básico** — Cadastro de leads: nome, contato, origem, estágio, notas
+  Protótipo visual já existe e precisa virar dados reais.
+- [ ] **Inbox comercial / WhatsApp workspace** — Visualização de conversas com contexto do lead, próxima ação e histórico rápido
+  Protótipo visual já existe e precisa virar fluxo real.
+- [ ] **Multichat por setor em um único número** — Comercial, fechamento e onboarding atuando na mesma thread com histórico centralizado
+  Protótipo visual já existe e precisa virar regra operacional persistida.
 - [ ] **Pipeline de vendas** — Visualização em lista (sem Kanban ainda) com status: Novo, Em contato, Proposta enviada, Negociação, Fechado, Perdido
+  Protótipo visual já existe e está integrado ao mock compartilhado.
 - [ ] **Lembretes de follow-up** — Data + hora + nota; notificação por e-mail
 - [ ] **Histórico de contatos** — Linha do tempo simples de cada lead
+  Já existe como base visual nas conversas.
 - [ ] **Geração de mensagens com IA** — Input de contexto → sugestão de mensagem (via Claude API)
+  Já existe como base visual em Mensagens IA.
 - [ ] **Dashboard simples** — Total de leads por estágio, follow-ups do dia
+  Protótipo visual já existe e precisa virar leitura real.
 
 ### Stack sugerida
 - Frontend: Next.js (já existente)
@@ -73,6 +132,8 @@ A proposta central é simples: **dar ao vendedor o que ele precisa para não per
 - [ ] **Busca e filtros avançados** — Por tag, estágio, data de criação, score
 
 #### Comunicação
+- [ ] **Inbox de conversas com ações rápidas** — Responder, criar tarefa, mover etapa e abrir contexto do lead sem trocar de tela
+- [ ] **Passagem de bastão entre setores** — Transferir a conversa entre comercial, fechamento e onboarding mantendo contexto e histórico
 - [ ] **Templates de mensagem** — Biblioteca pessoal de scripts por estágio (abertura, follow-up, proposta, fechamento, reativação)
 - [ ] **Cadências automáticas** — Sequência de follow-ups agendados: D+1, D+3, D+7
 - [ ] **Histórico completo de conversas** — Registro de cada troca, nota ou contato feito
@@ -123,6 +184,7 @@ A Fase 1 entrega CRM + IA. A Fase 2 entrega o fluxo comercial completo — é on
 #### Times
 - [ ] **Workspace compartilhado** — Até 10 vendedores por conta
 - [ ] **Atribuição de leads** — Lead ownership por vendedor
+- [ ] **Setores dentro da mesma conta e do mesmo número** — Comercial, fechamento, onboarding e futuros times operando no mesmo canal
 - [ ] **Dashboard de gestor** — Visão consolidada do time: produtividade, pipeline, ranking
 - [ ] **Comentários internos** — Notas visíveis apenas para o time
 
@@ -185,6 +247,8 @@ A Fase 1 entrega CRM + IA. A Fase 2 entrega o fluxo comercial completo — é on
 3. **B2C ou B2B2C?** — Vender direto para o vendedor ou para gestores/agências que distribuem para o time?
 4. **Qual segmento de vendedor priorizar?** — Corretores, lojistas, autônomos? Cada um tem jornada e linguagem diferente.
 5. **Representantes farmacêuticos entram no ICP?** — Verificar depois se o fluxo atual atende visitação, agenda por rota e histórico por profissional de saúde sem desviar o foco principal do produto.
+6. **Inbox própria ou camada complementar sobre CRM?** — Definir se o produto vai tratar conversa como centro absoluto da experiência ou como uma extensão de CRM com IA.
+7. **Setor é visível para o cliente ou apenas interno?** — Definir se a passagem entre comercial, fechamento e onboarding acontece de forma totalmente invisível para quem está do outro lado do WhatsApp.
 
 ---
 
