@@ -69,27 +69,27 @@ const problemItems = [
 
 const solutionItems = [
   {
-    title: "Organize todos os leads",
+    title: "Centralize todos os leads",
     description:
-      "Cadastre contatos, estágio de negociação e próximos passos sem depender de planilhas.",
+      "Cadastre contatos, estágio de negociação e próximos passos sem depender de planilhas ou memória.",
     icon: Users,
   },
   {
-    title: "Crie mensagens com IA",
+    title: "Crie mensagens com IA comercial",
     description:
-      "Gere respostas, abordagens e follow-ups com contexto comercial em poucos segundos.",
+      "Gere respostas, abordagens e follow-ups com contexto de venda em poucos segundos.",
     icon: Bot,
   },
   {
-    title: "Agende acompanhamentos",
+    title: "Automatize o follow-up",
     description:
-      "Defina lembretes práticos para retomar a conversa na hora ideal e não deixar dinheiro na mesa.",
+      "Defina lembretes e agendamentos para retomar a conversa na hora certa sem deixar oportunidade esfriar.",
     icon: CalendarClock,
   },
   {
-    title: "Acompanhe oportunidades",
+    title: "Priorize quem está quente",
     description:
-      "Veja rapidamente quais leads estão avançando e onde concentrar energia de venda.",
+      "Veja rapidamente quais leads estão avançando e onde concentrar sua energia de venda.",
     icon: Target,
   },
 ];
@@ -202,23 +202,23 @@ const featureCards: {
 const howItWorksSteps = [
   {
     step: "01",
-    title: "Cadastre seus leads",
+    title: "Puxe seus leads para um fluxo simples",
     description:
-      "Importe de uma planilha ou adicione manualmente. Cada lead fica com histórico, tags e próximo passo definidos.",
+      "Importe de uma planilha ou cadastre manualmente. Cada lead já entra com histórico, status e próximo passo.",
     icon: Users,
   },
   {
     step: "02",
-    title: "IA sugere e prioriza",
+    title: "Deixe a IA acelerar sua resposta",
     description:
-      "Com base na conversa e no comportamento, a IA indica quem abordar agora e gera a mensagem ideal para o momento.",
+      "Com base na conversa e no momento do lead, a IA sugere mensagens de venda e follow-up para você agir mais rápido.",
     icon: Brain,
   },
   {
     step: "03",
-    title: "Feche com consistência",
+    title: "Acompanhe e feche com consistência",
     description:
-      "Follow-up no timing certo, pipeline sempre atualizado e métricas reais para saber o que está funcionando.",
+      "Follow-up no timing certo, pipeline atualizado e visão clara do que precisa da sua atenção agora.",
     icon: Target,
   },
 ];
@@ -226,21 +226,67 @@ const howItWorksSteps = [
 const benefitCards = [
   {
     number: "01",
-    title: "Menos bagunça, mais prioridade",
+    title: "Menos conversa perdida, mais prioridade",
     description:
-      "Centralize leads, histórico e próximos passos em um só lugar para saber exatamente quem merece atenção agora.",
+      "Centralize leads, histórico e próximos passos em um só lugar para saber quem merece atenção antes de esfriar.",
   },
   {
     number: "02",
-    title: "Follow-up no tempo certo",
+    title: "Follow-up sem depender da memória",
     description:
-      "Agende lembretes e mantenha a cadência de contato sem depender da memória ou de planilhas soltas.",
+      "Agende lembretes, mensagens e campanhas sem depender da memória, de post-it ou de planilhas soltas.",
   },
   {
     number: "03",
-    title: "IA para responder e vender mais rápido",
+    title: "IA que ajuda a vender, não só escrever",
     description:
-      "Crie mensagens com contexto comercial para iniciar conversas, retomar negociações e acelerar decisões.",
+      "Crie mensagens com contexto comercial para iniciar conversas, retomar negociações e acelerar decisões com mais qualidade.",
+  },
+];
+
+const audienceCards = [
+  {
+    title: "Vendedores individuais",
+    description: "Para quem recebe lead o dia inteiro e precisa manter a operação rodando sem virar refém do caos.",
+  },
+  {
+    title: "Corretores e vendedores de carros",
+    description: "Para rotinas com múltiplas conversas, resposta rápida e follow-up que faz diferença no fechamento.",
+  },
+  {
+    title: "Closers e representantes",
+    description: "Para quem precisa parecer profissional, responder com contexto e não perder oportunidade por atraso.",
+  },
+  {
+    title: "Pequenos times comerciais",
+    description: "Para equipes enxutas que querem mais organização e velocidade sem contratar um CRM pesado.",
+  },
+];
+
+const comparisonRows = [
+  {
+    label: "Organizar leads sem planilha",
+    manual: "Improvisado e fácil de perder",
+    crm: "Possível, mas burocrático",
+    leadflow: "Simples e pronto para o dia a dia",
+  },
+  {
+    label: "Follow-up no tempo certo",
+    manual: "Depende da memória",
+    crm: "Exige configuração e disciplina",
+    leadflow: "Lembretes e agendamentos na rotina",
+  },
+  {
+    label: "Mensagens de vendas com contexto",
+    manual: "Tudo do zero",
+    crm: "Normalmente fora do fluxo",
+    leadflow: "IA comercial dentro da operação",
+  },
+  {
+    label: "Velocidade para usar no celular",
+    manual: "Rápido, mas desorganizado",
+    crm: "Pesado para a rotina mobile",
+    leadflow: "Mobile-first e focado em ação",
   },
 ];
 
@@ -273,42 +319,41 @@ const integrationCards: { title: string; description: string; icon: LucideIcon }
 ];
 
 const statsData = [
-  { value: "< 5 min", label: "para configurar e começar" },
-  { value: "100%", label: "mobile‑first" },
-  { value: "IA nativa", label: "integrada ao fluxo comercial" },
-  { value: "Zero", label: "setup complexo" },
+  { value: "7 dias", label: "de teste grátis" },
+  { value: "100%", label: "mobile-first" },
+  { value: "CRM + IA", label: "no mesmo fluxo comercial" },
+  { value: "Sem", label: "CRM pesado para aprender" },
 ];
 
 const pricingPlans = [
   {
     name: "Starter",
-    price: "R$119",
+    price: "R$49,90",
     period: "/mês",
-    description: "Para vendedores que querem mais controle no dia a dia.",
+    description: "Para vendedores que querem parar de perder lead no meio da correria.",
     features: [
       "CRM simples para leads",
-      "Pipeline Kanban básico",
-      "Lembretes de follow-up",
-      "Mensagens com IA (50/mês)",
-      "Templates de mensagem",
-      "Dashboard simples",
+      "Gestão de leads e pipeline visual",
+      "Agendamento de mensagens",
+      "Campanhas de WhatsApp",
+      "IA para mensagens de vendas",
+      "Dashboard básico",
     ],
     highlighted: false,
     cta: "Começar grátis",
   },
   {
     name: "Pro",
-    price: "R$199",
+    price: "R$79,90",
     period: "/mês",
-    description: "Para quem quer vender com mais volume e mais consistência.",
+    description: "Para quem quer mais volume, mais consistência e follow-up mais afiado.",
     features: [
       "Tudo do Starter",
-      "Mensagens com IA ilimitadas",
-      "Lead Scoring automático",
+      "Mais volume de campanhas e agendamentos",
+      "Mais uso de IA comercial",
       "Cadências automáticas",
-      "Análise de sentimento",
-      "Relatórios avançados",
-      "Integrações (Google, Zapier)",
+      "Lead Scoring automático",
+      "Dashboard mais completo",
       "Suporte prioritário",
     ],
     highlighted: true,
@@ -325,12 +370,12 @@ const faqs = [
   {
     question: "Preciso configurar algo complexo para começar?",
     answer:
-      "Não. A proposta é justamente reduzir fricção: organize leads em menos de 5 minutos, acompanhe follow-ups e venda mais sem setup complicado.",
+      "Não. A proposta é justamente reduzir fricção: você organiza leads, acompanha follow-ups e começa a usar a operação sem entrar em um CRM complicado.",
   },
   {
-    question: "A integração com WhatsApp já está pronta?",
+    question: "Serve para quem vende praticamente tudo pelo WhatsApp?",
     answer:
-      "Ainda não nesta fase. Primeiro estamos validando a experiência do produto e, nas próximas fases, evoluiremos para integração direta com WhatsApp via API oficial.",
+      "Sim. O produto foi desenhado para vendedores que vivem no WhatsApp e precisam de mais organização, mais velocidade e mais consistência comercial no dia a dia.",
   },
   {
     question: "Como a IA gera as mensagens?",
@@ -350,11 +395,12 @@ const faqs = [
   {
     question: "Tem período de teste gratuito?",
     answer:
-      "Sim. Você começa com 14 dias grátis sem precisar de cartão de crédito. Só cobra depois que você decidir continuar.",
+      "Sim. Você começa com 7 dias grátis sem precisar de cartão de crédito. Só continua se fizer sentido para sua operação.",
   },
 ];
 
 const navItems = [
+  { href: "#para-quem", label: "Para quem é" },
   { href: "#como-funciona", label: "Como funciona" },
   { href: "#recursos", label: "Recursos" },
   { href: "#precos", label: "Preços" },
@@ -795,7 +841,7 @@ export default function Home() {
               <Link href="/painel">Entrar</Link>
             </Button>
             <Button asChild>
-              <Link href="/login">Testar 14 dias grátis</Link>
+              <Link href="/login">Testar 7 dias grátis</Link>
             </Button>
           </div>
 
@@ -812,34 +858,51 @@ export default function Home() {
           <div>
             <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-emerald-100 bg-white/80 px-3 py-2 text-xs font-semibold text-emerald-700 shadow-sm">
               <span className="rounded-full bg-emerald-500 px-2 py-1 text-[11px] uppercase tracking-[0.2em] text-white">
-                Novo
+                IA comercial
               </span>
-              Mobile-first para vender mais no WhatsApp
+              Feito para vendedores que vivem no WhatsApp
             </div>
 
-            <h1 className="mt-6 max-w-xl text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl sm:leading-[1.05]">
-              O copiloto de IA para vendedores que vivem no WhatsApp
+            <h1 className="mt-6 max-w-2xl text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl sm:leading-[1.02]">
+              Pare de perder vendas no WhatsApp por falta de follow-up
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
-              Organize seus leads, crie mensagens com IA e acompanhe seus clientes sem
-              complicação. Feito para quem vende no dia a dia.
+            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
+              O LeadFlow AI une CRM simples, follow-up, campanhas e IA comercial em uma
+              rotina mobile-first para você responder mais rápido, organizar seus leads e
+              vender com mais consistência sem CRM complicado.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg" className="h-12 rounded-2xl">
                 <Link href="/login">
-                  Testar 14 dias grátis
+                  Testar 7 dias grátis
                   <ArrowRight className="size-4" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="secondary" className="h-12 rounded-2xl">
-                <Link href="#como-funciona">Ver como funciona</Link>
+                <Link href="#precos">Ver planos</Link>
               </Button>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              {[
+                "CRM simples",
+                "Follow-up automático",
+                "Mensagens com IA",
+                "Campanhas no WhatsApp",
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-slate-200 bg-white/80 px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm"
+                >
+                  {item}
+                </span>
+              ))}
             </div>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               {[
-                "Sem cartão de crédito",
+                "Pagamento por cartão e Pix",
                 "Cancele quando quiser",
                 "Suporte em português",
               ].map((item) => (
@@ -873,12 +936,40 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="para-quem" className={`${sectionClassName} ${sectionSpacingClassName}`}>
+        <SectionHeading
+          eyebrow="Para quem é"
+          title="Feito para quem vende no celular e não quer CRM pesado."
+          description="Se sua rotina comercial acontece no WhatsApp e você sente que perde oportunidade no meio da correria, esta página é para você."
+          centered
+        />
+
+        <div className={`${sectionContentSpacingClassName} grid gap-4 md:grid-cols-2 xl:grid-cols-4`}>
+          {audienceCards.map((item) => (
+            <Card
+              key={item.title}
+              className="h-full border-slate-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(244,248,247,0.96))]"
+            >
+              <CardHeader className="gap-4">
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-900 text-white">
+                  <Users className="size-5" />
+                </div>
+                <div>
+                  <CardTitle>{item.title}</CardTitle>
+                  <CardDescription className="mt-2">{item.description}</CardDescription>
+                </div>
+              </CardHeader>
+            </Card>
+          ))}
+        </div>
+      </section>
+
       {/* Problema */}
       <section className={`${sectionClassName} ${sectionSpacingClassName}`}>
         <SectionHeading
           eyebrow="Problema"
-          title="Muita venda se perde no meio da correria."
-          description="Muitos vendedores deixam dinheiro na mesa porque o WhatsApp vira uma operação manual, bagunçada e sem prioridade clara."
+          title="O problema não é falta de lead. É falta de acompanhamento."
+          description="Muita venda se perde porque o WhatsApp vira uma operação manual, bagunçada e sem prioridade clara."
         />
 
         <div className={`${sectionContentSpacingClassName} grid gap-4 sm:grid-cols-2 xl:grid-cols-4`}>
@@ -901,8 +992,8 @@ export default function Home() {
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
           <SectionHeading
             eyebrow="Solução"
-            title="Uma operação comercial simples, rápida e prática."
-            description="O LeadFlow AI centraliza o que o vendedor precisa para vender mais: organização, mensagens com IA, follow-up e visão das oportunidades."
+            title="Uma operação comercial simples, rápida e feita para vender."
+            description="O LeadFlow AI centraliza o que realmente importa no dia a dia: organização, mensagens com IA, follow-up, campanhas e visão das oportunidades."
           />
 
           <div className="grid gap-4 sm:grid-cols-2">
@@ -921,12 +1012,56 @@ export default function Home() {
         </div>
       </section>
 
+      <section className={`${sectionClassName} ${sectionSpacingClassName}`}>
+        <div className="overflow-hidden rounded-[2rem] border border-slate-200/80 bg-slate-950 text-white shadow-[0_35px_120px_-50px_rgba(15,23,42,0.6)]">
+          <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-[0.8fr_1.2fr] lg:p-10">
+            <div>
+              <span className="inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300">
+                Mecanismo único
+              </span>
+              <h2 className="mt-4 max-w-lg text-3xl font-semibold tracking-tight sm:text-4xl">
+                Não é só WhatsApp. Não é só CRM. Não é só IA.
+              </h2>
+              <p className="mt-4 max-w-lg text-base leading-7 text-slate-300 sm:text-lg">
+                O LeadFlow AI junta WhatsApp, CRM simples, follow-up e IA comercial na mesma
+                rotina para você vender mais sem precisar montar uma operação pesada.
+              </p>
+            </div>
+
+            <div className="overflow-x-auto rounded-[1.6rem] border border-white/10 bg-white/5">
+              <div className="min-w-[720px]">
+                <div className="grid grid-cols-[1.2fr_repeat(3,minmax(0,1fr))] border-b border-white/10 text-sm">
+                  <div className="px-4 py-4 font-semibold text-slate-200">O que você precisa no dia a dia</div>
+                  <div className="px-4 py-4 text-center font-semibold text-slate-400">WhatsApp manual</div>
+                  <div className="px-4 py-4 text-center font-semibold text-slate-400">CRM pesado</div>
+                  <div className="px-4 py-4 text-center font-semibold text-emerald-300">LeadFlow AI</div>
+                </div>
+
+                {comparisonRows.map((row, index) => (
+                  <div
+                    key={row.label}
+                    className={`grid grid-cols-[1.2fr_repeat(3,minmax(0,1fr))] text-sm ${
+                      index !== comparisonRows.length - 1 ? "border-b border-white/10" : ""
+                    }`}
+                  >
+                    <div className="px-4 py-4 font-medium text-white">{row.label}</div>
+                    <div className="px-4 py-4 text-center text-slate-400">{row.manual}</div>
+                    <div className="px-4 py-4 text-center text-slate-400">{row.crm}</div>
+                    <div className="px-4 py-4 text-center text-emerald-200">{row.leadflow}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Como funciona */}
       <section id="como-funciona" className={`${sectionClassName} ${sectionSpacingClassName}`}>
         <SectionHeading
           eyebrow="Como funciona"
-          title="Do lead ao fechamento em três passos."
-          description="Sem curva de aprendizado longa. Em minutos você já tem sua operação comercial rodando com IA."
+          title="Do lead ao follow-up em três passos."
+          description="Sem curva de aprendizado longa. Em minutos você já tem uma operação comercial mais organizada e mais inteligente."
           centered
         />
 
@@ -954,8 +1089,8 @@ export default function Home() {
       <section id="recursos" className={`${sectionClassName} ${sectionSpacingClassName}`}>
         <SectionHeading
           eyebrow="Recursos"
-          title="Tudo o que importa para o vendedor do dia a dia."
-          description="Sem cara de CRM complexo. Só as ferramentas certas para manter o pipeline rodando e a conversa avançando."
+          title="Tudo o que importa para vender mais no WhatsApp."
+          description="Sem cara de CRM complexo. Só as ferramentas certas para manter o pipeline andando e a conversa avançando."
           centered
         />
 
@@ -994,9 +1129,8 @@ export default function Home() {
               Não é só um CRM bonito. É uma rotina comercial mais leve e mais lucrativa.
             </h2>
             <p className="mt-4 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
-              A ideia é dar ao vendedor uma ferramenta prática, parecida com o ritmo do
-              WhatsApp, mas com organização, inteligência e integrações que economizam tempo
-              de verdade.
+              A ideia é dar ao vendedor uma ferramenta prática, com o ritmo do WhatsApp, mas
+              com organização, inteligência e integrações que economizam tempo de verdade.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -1004,7 +1138,7 @@ export default function Home() {
                 <Link href="#cta">Quero testar</Link>
               </Button>
               <Button asChild size="lg" variant="secondary" className="h-12 rounded-2xl">
-                <Link href="#precos">Ver planos</Link>
+                <Link href="#precos">Ver oferta</Link>
               </Button>
             </div>
           </div>
@@ -1045,7 +1179,7 @@ export default function Home() {
               O que o vendedor vai querer conectado no dia a dia.
             </h3>
             <p className="mt-3 text-base leading-7 text-slate-600">
-              Integrações pensadas para reduzir atrito na rotina comercial, conectar as
+              Integracoes pensadas para reduzir atrito na rotina comercial, conectar as
               ferramentas certas e ajudar o vendedor a acompanhar cada oportunidade com mais
               contexto e velocidade.
             </p>
@@ -1077,9 +1211,14 @@ export default function Home() {
         <SectionHeading
           eyebrow="Preços"
           title="Planos simples para começar rápido."
-          description="14 dias grátis em qualquer plano. Sem cartão de crédito, sem burocracia."
+          description="7 dias grátis em qualquer plano. Pagamento simples por cartão, Pix e novos meios conforme a operação evoluir."
           centered
         />
+
+        <div className="mx-auto mt-6 max-w-3xl rounded-[1.6rem] border border-emerald-100 bg-emerald-50/70 px-5 py-4 text-center text-sm font-medium text-emerald-900 shadow-sm">
+          Se o LeadFlow AI evitar que um único lead quente esfrie por falta de follow-up, ele
+          já tende a se pagar muito rápido.
+        </div>
 
         <div className={`${sectionContentSpacingClassName} grid gap-5 lg:grid-cols-2`}>
           {pricingPlans.map((plan) => (
@@ -1152,7 +1291,7 @@ export default function Home() {
                 <p
                   className={`mt-3 text-center text-xs ${plan.highlighted ? "text-slate-400" : "text-slate-500"}`}
                 >
-                  14 dias grátis · Cancele quando quiser
+                  7 dias grátis · Cancele quando quiser
                 </p>
               </CardContent>
             </Card>
@@ -1168,7 +1307,7 @@ export default function Home() {
         <SectionHeading
           eyebrow="FAQ"
           title="Perguntas frequentes"
-          description="O foco do LeadFlow AI é simplificar a vida do vendedor, sem transformar sua rotina em um software pesado."
+          description="O foco do LeadFlow AI é simplificar a vida do vendedor sem transformar a rotina em um software pesado."
           centered
         />
 
@@ -1196,19 +1335,20 @@ export default function Home() {
 
             <div className="relative mx-auto max-w-3xl text-center">
               <span className="inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-emerald-300">
-                14 dias grátis
+                7 dias grátis
               </span>
               <h2 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                Comece a vender com mais consistência no WhatsApp.
+                Organize seus leads e volte a vender com consistência no WhatsApp.
               </h2>
               <p className="mt-4 text-base leading-7 text-slate-300 sm:text-lg">
-                LeadFlow AI foi pensado para quem quer simplicidade, agilidade e foco total
-                em fechar mais vendas. Sem cartão de crédito para começar.
+                Se hoje sua operação depende de memória, conversa solta e follow-up atrasado,
+                esta é a hora de trocar improviso por processo leve. Com pagamento simples e
+                flexível para a sua operação.
               </p>
 
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                 <Button asChild size="lg" className="h-12 rounded-2xl">
-                  <Link href="/login">Começar teste grátis</Link>
+                  <Link href="/login">Começar 7 dias grátis</Link>
                 </Button>
                 <Button
                   asChild
@@ -1221,7 +1361,7 @@ export default function Home() {
               </div>
 
               <p className="mt-4 text-sm text-slate-400">
-                Sem cartão de crédito · Cancele quando quiser · Suporte em português
+                Pagamento por cartão e Pix · Cancele quando quiser · Suporte em português
               </p>
             </div>
           </div>
