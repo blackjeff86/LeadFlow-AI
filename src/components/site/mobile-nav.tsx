@@ -67,7 +67,7 @@ export function MobileNav() {
           </SheetClose>
           <SheetClose asChild>
             <Button asChild className="h-12 w-full rounded-2xl">
-              <Link href="/login">Testar 14 dias grátis</Link>
+              <Link href="/login">Testar 7 dias grátis</Link>
             </Button>
           </SheetClose>
         </div>

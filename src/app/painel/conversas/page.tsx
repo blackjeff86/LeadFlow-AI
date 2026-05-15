@@ -1,9 +1,11 @@
 "use client";
 
 import {
+  AlertTriangle,
   ArrowUpRight,
   Bot,
   Building2,
+  ClipboardList,
   Clock3,
   MessageCircleMore,
   MessageSquareText,
@@ -132,6 +134,7 @@ export default function ConversasPage() {
   const handoffTimeline = activeThread?.messages.filter((message) => message.internal) ?? [];
   const myThreads = threads.filter((thread) => thread.sectorOwner === "Jeffe");
   const sectorThreads = threads.filter((thread) => thread.activeSector === activeThread?.activeSector);
+  const criticalThreads = threads.filter((thread) => thread.slaState === "Crítico");
   const sectorSummaryCards = [
     {
       title: "Minhas conversas",
@@ -145,7 +148,7 @@ export default function ConversasPage() {
     },
     {
       title: "SLA crítico",
-      value: "2 conversas",
+      value: String(criticalThreads.length),
       detail: "sem resposta ideal dentro da janela",
     },
   ];
@@ -325,7 +328,7 @@ export default function ConversasPage() {
               </div>
               <div className="flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-700">
                 <UsersRound className="size-4" />
-                mesmo numero, filas separadas
+                mesmo número, filas separadas
               </div>
             </div>
             <CardDescription>
@@ -363,9 +366,9 @@ export default function ConversasPage() {
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
                     {card.title}
                   </p>
-                  <p className="mt-3 text-2xl font-semibold tracking-tight text-slate-900">
-                    {card.value}
-                  </p>
+                <p className="mt-3 text-2xl font-semibold tracking-tight text-slate-900">
+                  {card.value}
+                </p>
                   <p className="mt-2 text-sm leading-6 text-slate-600">{card.detail}</p>
                 </div>
               ))}
@@ -380,7 +383,7 @@ export default function ConversasPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
                   SLA por conversa
                 </p>
-                <CardTitle className="mt-2">Tempo parado e urgencia</CardTitle>
+                <CardTitle className="mt-2">Tempo parado e urgência</CardTitle>
               </div>
               <div className="flex size-11 items-center justify-center rounded-2xl bg-amber-100 text-amber-700">
                 <Clock3 className="size-5" />
@@ -394,9 +397,9 @@ export default function ConversasPage() {
             {threads.map((thread) => {
               const lead = leads.find((item) => item.id === thread.leadId);
               const slaTone =
-                thread.status === "Pronto para fechar"
+                thread.slaState === "Crítico"
                   ? "bg-rose-100 text-rose-700"
-                  : thread.status === "Em andamento"
+                  : thread.slaState === "Janela ativa"
                     ? "bg-sky-100 text-sky-700"
                     : "bg-amber-100 text-amber-700";
 
@@ -408,17 +411,20 @@ export default function ConversasPage() {
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <p className="font-semibold text-slate-900">{lead?.name}</p>
-                      <p className="mt-1 text-sm text-slate-500">{thread.lastMessageAt}</p>
+                      <p className="mt-1 text-sm text-slate-500">{thread.slaDeadline}</p>
                     </div>
                     <span className={`rounded-full px-3 py-1 text-xs font-semibold ${slaTone}`}>
-                      {thread.status === "Pronto para fechar"
-                        ? "critico agora"
-                        : thread.status === "Em andamento"
+                      {thread.slaState === "Crítico"
+                        ? "crítico agora"
+                        : thread.slaState === "Janela ativa"
                           ? "janela ativa"
-                          : "retomar hoje"}
+                          : "saudável"}
                     </span>
                   </div>
                   <p className="mt-3 text-sm leading-6 text-slate-600">{thread.suggestedAction}</p>
+                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                    fila #{thread.queuePosition} no setor
+                  </p>
                 </div>
               );
             })}
@@ -438,7 +444,7 @@ export default function ConversasPage() {
               </div>
               <div className="flex items-center gap-2 rounded-full bg-sky-50 px-3 py-2 text-xs font-semibold text-sky-700">
                 <MessageCircleMore className="size-4" />
-                1 numero, 3 setores
+                1 número, 3 setores
               </div>
             </div>
             <CardDescription>
@@ -507,6 +513,40 @@ export default function ConversasPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
+            <div className="grid gap-3 sm:grid-cols-3">
+              <div className="rounded-[1.5rem] border border-slate-200/80 bg-slate-50/80 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                  Posição na fila
+                </p>
+                <p className="mt-2 text-2xl font-semibold tracking-tight text-slate-900">
+                  #{activeThread.queuePosition}
+                </p>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Ordem de resposta dentro do setor atual.
+                </p>
+              </div>
+              <div className="rounded-[1.5rem] border border-slate-200/80 bg-slate-50/80 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                  SLA atual
+                </p>
+                <p className="mt-2 text-base font-semibold text-slate-900">{activeThread.slaDeadline}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Estado: {activeThread.slaState.toLowerCase()}.
+                </p>
+              </div>
+              <div className="rounded-[1.5rem] border border-slate-200/80 bg-slate-50/80 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                  Setor para o cliente
+                </p>
+                <p className="mt-2 text-base font-semibold text-slate-900">
+                  {activeThread.sectorVisibilityMode}
+                </p>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Define se a troca de setor aparece ou fica invisível na experiência final.
+                </p>
+              </div>
+            </div>
+
             <div className="rounded-[1.5rem] border border-slate-200/80 bg-slate-50/80 p-4">
               <div className="flex items-center justify-between gap-3">
                 <div>
@@ -526,6 +566,16 @@ export default function ConversasPage() {
                   <p className="mt-2 text-sm font-semibold text-slate-900">{activeThread.sectorOwner}</p>
                 </div>
               </div>
+            </div>
+
+            <div className="rounded-[1.5rem] border border-amber-100 bg-amber-50/80 p-4">
+              <div className="flex items-center gap-2 text-amber-800">
+                <ClipboardList className="size-4" />
+                <span className="text-xs font-semibold uppercase tracking-[0.18em]">
+                  Tarefa criada por handoff
+                </span>
+              </div>
+              <p className="mt-3 text-sm leading-7 text-slate-700">{activeThread.autoTaskLabel}</p>
             </div>
 
             <div className="rounded-[1.5rem] border border-emerald-100 bg-white p-4">
@@ -549,7 +599,7 @@ export default function ConversasPage() {
                       }
                     >
                       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
-                        {done ? "Concluido" : active ? "Atual" : "Próximo"}
+                        {done ? "Concluído" : active ? "Atual" : "Próximo"}
                       </p>
                       <p className="mt-2 font-semibold text-slate-900">{step}</p>
                     </div>
@@ -626,9 +676,9 @@ export default function ConversasPage() {
                     <p className="text-sm font-semibold text-slate-900">{action.title}</p>
                     <SectorBadge value={action.sector} />
                   </div>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">{action.detail}</p>
-                  <Button
-                    variant="outline"
+                <p className="mt-2 text-sm leading-6 text-slate-600">{action.detail}</p>
+                <Button
+                  variant="outline"
                     className="mt-3 w-full justify-center rounded-[1.25rem]"
                     onClick={() => transferThreadToSector(activeThread.id, action.sector as ConversationSector)}
                     disabled={activeThread.activeSector === action.sector}
@@ -686,6 +736,12 @@ export default function ConversasPage() {
                   Setor atual
                 </p>
                 <p className="mt-2 font-semibold text-slate-900">{activeThread.activeSector}</p>
+              </div>
+              <div className="rounded-[1.5rem] border border-slate-200/80 bg-slate-50/80 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                  Visibilidade do setor
+                </p>
+                <p className="mt-2 font-semibold text-slate-900">{activeThread.sectorVisibilityMode}</p>
               </div>
               <div className="rounded-[1.5rem] border border-slate-200/80 bg-slate-50/80 p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
@@ -759,9 +815,12 @@ export default function ConversasPage() {
               <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
                 Multichat por setor em um único número, com passagem de bastão e histórico centralizado.
               </div>
+              <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
+                SLA, fila por responsável e tarefa automática deixam a operação mais explícita antes do backend.
+              </div>
               <Button className="mt-2 w-full justify-center rounded-[1.25rem]">
-                <MessageSquareText className="size-4.5" />
-                Evoluir para integração real
+                <AlertTriangle className="size-4.5" />
+                Validar regras operacionais
               </Button>
             </CardContent>
           </Card>

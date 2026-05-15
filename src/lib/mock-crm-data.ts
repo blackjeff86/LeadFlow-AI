@@ -1,59 +1,18 @@
-export type LeadTemperature = "Muito quente" | "Quente" | "Morno";
-export type LeadStage = "Novo" | "Em contato" | "Proposta enviada" | "Negociação" | "Fechamento";
-export type TaskStatus = "Atrasada" | "Hoje" | "Próxima";
-export type ConversationChannel = "WhatsApp" | "Instagram" | "Site";
-export type ConversationStatus = "Aguardando resposta" | "Em andamento" | "Pronto para fechar";
-export type ConversationSector = "Comercial" | "Fechamento" | "Onboarding";
+export type {
+  ConversationChannel,
+  ConversationMessage,
+  ConversationSector,
+  ConversationSlaState,
+  ConversationStatus,
+  ConversationThread,
+  LeadRecord,
+  LeadStage,
+  LeadTemperature,
+  SectorVisibilityMode,
+  TaskStatus,
+} from "@/lib/workspace/types";
 
-export type LeadRecord = {
-  id: string;
-  name: string;
-  company: string;
-  source: string;
-  owner: string;
-  stage: LeadStage;
-  temperature: LeadTemperature;
-  lastContact: string;
-  nextAction: string;
-  summary: string;
-  tags: string[];
-  pipelineValue: string;
-  pipelineValueNumber: number;
-  responseEta: string;
-  taskSummary: string;
-  taskAction: string;
-  taskType: string;
-  taskStatus: TaskStatus;
-  taskDue: string;
-  messagePurpose: string;
-  messageIdealTime: string;
-  messageContext: string;
-  messageDraft: string;
-};
-
-export type ConversationMessage = {
-  sender: "lead" | "seller" | "ai";
-  text: string;
-  time: string;
-  sector?: ConversationSector;
-  internal?: boolean;
-};
-
-export type ConversationThread = {
-  id: string;
-  leadId: string;
-  channel: ConversationChannel;
-  status: ConversationStatus;
-  unreadCount: number;
-  preview: string;
-  lastMessageAt: string;
-  aiSummary: string;
-  suggestedAction: string;
-  activeSector: ConversationSector;
-  sectorQueue: ConversationSector[];
-  sectorOwner: string;
-  messages: ConversationMessage[];
-};
+import type { ConversationThread, LeadRecord } from "@/lib/workspace/types";
 
 export const crmLeads: LeadRecord[] = [
   {
@@ -382,6 +341,11 @@ export const conversationThreads: ConversationThread[] = [
     activeSector: "Fechamento",
     sectorQueue: ["Comercial", "Fechamento", "Onboarding"],
     sectorOwner: "Luan Freire",
+    queuePosition: 1,
+    slaState: "Crítico",
+    slaDeadline: "Responder até 10:30",
+    sectorVisibilityMode: "Invisível para o cliente",
+    autoTaskLabel: "Tarefa criada: validar condição final e puxar decisão hoje",
     messages: [
       {
         sender: "lead",
@@ -422,6 +386,11 @@ export const conversationThreads: ConversationThread[] = [
     activeSector: "Comercial",
     sectorQueue: ["Comercial", "Fechamento", "Onboarding"],
     sectorOwner: "Jeffe",
+    queuePosition: 2,
+    slaState: "Janela ativa",
+    slaDeadline: "Retomar até 13:00",
+    sectorVisibilityMode: "Invisível para o cliente",
+    autoTaskLabel: "Tarefa ativa: reengajar lead com resposta curta",
     messages: [
       {
         sender: "seller",
@@ -455,6 +424,11 @@ export const conversationThreads: ConversationThread[] = [
     activeSector: "Comercial",
     sectorQueue: ["Comercial", "Fechamento", "Onboarding"],
     sectorOwner: "Jeffe",
+    queuePosition: 1,
+    slaState: "Crítico",
+    slaDeadline: "Responder em até 20 min",
+    sectorVisibilityMode: "Explícito para o cliente",
+    autoTaskLabel: "Tarefa ativa: responder prazo de implantação",
     messages: [
       {
         sender: "lead",
@@ -488,6 +462,11 @@ export const conversationThreads: ConversationThread[] = [
     activeSector: "Comercial",
     sectorQueue: ["Comercial", "Fechamento", "Onboarding"],
     sectorOwner: "Jeffe",
+    queuePosition: 3,
+    slaState: "Saudável",
+    slaDeadline: "Primeiro contato até 11:20",
+    sectorVisibilityMode: "Invisível para o cliente",
+    autoTaskLabel: "Tarefa ativa: abrir conversa e qualificar interesse",
     messages: [
       {
         sender: "lead",

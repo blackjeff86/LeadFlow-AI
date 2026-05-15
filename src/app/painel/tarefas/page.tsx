@@ -3,6 +3,7 @@
 import {
   AlarmClockCheck,
   ArrowUpRight,
+  ClipboardList,
   CalendarRange,
   CheckCheck,
   CirclePlus,
@@ -114,6 +115,21 @@ export default function TarefasPage() {
     focusCards[1],
     focusCards[2],
   ];
+
+  const handoffTasks = threads
+    .filter((thread) => thread.autoTaskLabel.toLowerCase().includes("tarefa"))
+    .map((thread) => {
+      const lead = leads.find((item) => item.id === thread.leadId);
+
+      return {
+        id: thread.id,
+        lead: lead?.name ?? "Lead",
+        sector: thread.activeSector,
+        owner: thread.sectorOwner,
+        due: thread.slaDeadline,
+        label: thread.autoTaskLabel,
+      };
+    });
 
   const taskColumns = [
     {
@@ -370,6 +386,52 @@ export default function TarefasPage() {
         </Card>
 
         <div className="space-y-5">
+          <Card>
+            <CardHeader>
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                    Handoff operacional
+                  </p>
+                  <CardTitle className="mt-2">Tarefas criadas automaticamente</CardTitle>
+                </div>
+                <div className="flex size-11 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-700">
+                  <ClipboardList className="size-5" />
+                </div>
+              </div>
+              <CardDescription>
+                Quando a conversa muda de setor, a operação já cria a próxima ação sem depender de memória.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {handoffTasks.map((task) => (
+                <div
+                  key={task.id}
+                  className="rounded-[1.5rem] border border-slate-200/80 bg-slate-50/80 p-4"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="font-semibold text-slate-900">{task.lead}</p>
+                      <p className="mt-1 text-sm text-slate-500">{task.label}</p>
+                    </div>
+                    <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
+                      {task.sector}
+                    </span>
+                  </div>
+                  <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-slate-600 ring-1 ring-slate-200">
+                      <Clock3 className="size-4" />
+                      {task.due}
+                    </div>
+                    <div className="inline-flex items-center gap-2 rounded-full bg-sky-50 px-3 py-2 text-sky-700">
+                      Responsável: {task.owner}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between gap-3">

@@ -37,10 +37,11 @@ A proposta central é simples: **dar ao vendedor o que ele precisa para não per
 - [x] Manter o produto mobile-first e orientado ao WhatsApp
 
 ### Próximos passos recomendados
-- [ ] Refinar regras de handoff entre setores com mais clareza operacional
+- [x] Refinar regras de handoff entre setores com mais clareza operacional
 - [ ] Definir se o setor é invisível ou explícito para o cliente final
-- [ ] Simular SLAs, fila por responsável e criação automática de tarefa por transferência
+- [x] Simular SLAs, fila por responsável e criação automática de tarefa por transferência
 - [ ] Preparar a transição do mock compartilhado para persistência real
+  Base técnica iniciada com camada `workspace`, mapeamento de persistência e migration inicial do Supabase.
 - [ ] Só depois abrir a frente de autenticação e acesso
 - [ ] Validar com usuários se a central de conversas realmente aumenta percepção de controle e produtividade
 
