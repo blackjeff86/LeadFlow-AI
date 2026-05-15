@@ -184,6 +184,7 @@ A Fase 1 entrega CRM + IA. A Fase 2 entrega o fluxo comercial completo — é on
 2. **Cobrança por uso de IA?** — Mensagens com IA têm custo. Definir se inclui no plano ou cobra por crédito.
 3. **B2C ou B2B2C?** — Vender direto para o vendedor ou para gestores/agências que distribuem para o time?
 4. **Qual segmento de vendedor priorizar?** — Corretores, lojistas, autônomos? Cada um tem jornada e linguagem diferente.
+5. **Representantes farmacêuticos entram no ICP?** — Verificar depois se o fluxo atual atende visitação, agenda por rota e histórico por profissional de saúde sem desviar o foco principal do produto.
 
 ---
 

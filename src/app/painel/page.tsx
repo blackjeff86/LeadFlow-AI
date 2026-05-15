@@ -1,7 +1,6 @@
 import {
   Activity,
   ArrowRight,
-  ArrowUpRight,
   Bot,
   Brain,
   CalendarClock,
@@ -17,11 +16,12 @@ import {
 } from "lucide-react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { crmLeads, dashboardActivityFeed, dashboardAiInsights } from "@/lib/mock-crm-data";
 
 const headlineStats = [
   {
     label: "Leads ativos",
-    value: "128",
+    value: String(crmLeads.length),
     change: "+12%",
     detail: "comparado aos últimos 7 dias",
     icon: Target,
@@ -37,16 +37,16 @@ const headlineStats = [
   },
   {
     label: "Follow-ups hoje",
-    value: "27",
-    change: "9 urgentes",
+    value: String(crmLeads.filter((lead) => lead.taskStatus !== "Próxima").length),
+    change: `${crmLeads.filter((lead) => lead.taskStatus === "Atrasada").length} urgentes`,
     detail: "vencem antes das 18h",
     icon: CalendarClock,
     tone: "bg-amber-100 text-amber-700",
   },
   {
     label: "IA pronta",
-    value: "41",
-    change: "14 novas",
+    value: String(crmLeads.filter((lead) => lead.messageDraft).length),
+    change: `${crmLeads.filter((lead) => lead.taskStatus !== "Próxima").length} novas`,
     detail: "sugestões esperando revisão",
     icon: Bot,
     tone: "bg-fuchsia-100 text-fuchsia-700",
@@ -54,91 +54,32 @@ const headlineStats = [
 ];
 
 const funnelSummary = [
-  { stage: "Entrada", total: 24, width: "w-[82%]", tone: "bg-slate-900" },
-  { stage: "Em contato", total: 18, width: "w-[64%]", tone: "bg-sky-500" },
-  { stage: "Proposta", total: 11, width: "w-[42%]", tone: "bg-amber-500" },
-  { stage: "Fechamento", total: 6, width: "w-[24%]", tone: "bg-emerald-500" },
+  { stage: "Entrada", total: crmLeads.filter((lead) => lead.stage === "Novo").length, width: "w-[82%]", tone: "bg-slate-900" },
+  { stage: "Em contato", total: crmLeads.filter((lead) => lead.stage === "Em contato").length, width: "w-[64%]", tone: "bg-sky-500" },
+  { stage: "Proposta", total: crmLeads.filter((lead) => lead.stage === "Proposta enviada").length, width: "w-[42%]", tone: "bg-amber-500" },
+  { stage: "Fechamento", total: crmLeads.filter((lead) => lead.stage === "Negociação" || lead.stage === "Fechamento").length, width: "w-[24%]", tone: "bg-emerald-500" },
 ];
 
-const hotLeads = [
-  {
-    name: "Vanessa Rocha",
-    source: "Instagram Ads",
-    status: "Muito quente",
-    note: "Pediu proposta com condição especial ainda hoje.",
-    action: "Responder até 10:30",
-  },
-  {
-    name: "Clínica Nexo",
-    source: "Landing page",
-    status: "Pronto para follow-up",
-    note: "IA sugeriu mensagem curta com gatilho de urgência.",
-    action: "Enviar às 13:00",
-  },
-  {
-    name: "Loja Prisma",
-    source: "Indicação",
-    status: "Negociação aberta",
-    note: "Comparando planos e aguardando retorno do financeiro.",
-    action: "Retomar às 18:30",
-  },
-];
+const hotLeads = crmLeads
+  .filter((lead) => lead.temperature !== "Morno")
+  .slice(0, 3)
+  .map((lead) => ({
+    name: lead.name,
+    source: lead.source,
+    status: lead.temperature === "Muito quente" ? "Muito quente" : "Pronto para follow-up",
+    note: lead.summary,
+    action: lead.nextAction,
+  }));
 
-const todayAgenda = [
-  {
-    time: "10:30",
-    title: "Responder Vanessa Rocha",
-    detail: "Lead quer fechar hoje se houver condição especial.",
-    type: "Mensagem",
-  },
-  {
-    time: "11:45",
-    title: "Revisar 4 respostas geradas pela IA",
-    detail: "Mensagens para leads do pipeline em contato.",
-    type: "IA",
-  },
-  {
-    time: "13:00",
-    title: "Retomar Clínica Nexo",
-    detail: "Melhor janela apontada pela IA para recuperar a conversa.",
-    type: "Follow-up",
-  },
-  {
-    time: "18:30",
-    title: "Cobrar retorno da Loja Prisma",
-    detail: "Proposta enviada ontem, com intenção alta de fechamento.",
-    type: "Proposta",
-  },
-];
-
-const activityFeed = [
-  {
-    title: "Carlos Mendes respondeu",
-    detail: "Perguntou sobre prazo de implantação e quer retorno hoje.",
-    time: "há 8 min",
-  },
-  {
-    title: "IA marcou 3 leads como quentes",
-    detail: "Com base no tempo de resposta e intenção de compra.",
-    time: "há 16 min",
-  },
-  {
-    title: "Novo lead entrou pelo anúncio",
-    detail: "Studio A7 chegou pela campanha de WhatsApp.",
-    time: "há 29 min",
-  },
-  {
-    title: "Follow-up concluído",
-    detail: "Mateus Silva recebeu a nova proposta com link de pagamento.",
-    time: "há 42 min",
-  },
-];
-
-const aiInsights = [
-  "Leads do Instagram estão convertendo melhor pela manhã.",
-  "Mensagens com CTA objetivo tiveram 21% mais resposta hoje.",
-  "Existem 3 oportunidades com risco de esfriar até o fim da tarde.",
-];
+const todayAgenda = crmLeads
+  .filter((lead) => lead.taskStatus !== "Próxima")
+  .slice(0, 4)
+  .map((lead) => ({
+    time: lead.taskDue.includes(", ") ? lead.taskDue.split(", ")[1] : lead.taskDue,
+    title: `${lead.taskAction} ${lead.name}`,
+    detail: lead.taskSummary,
+    type: lead.taskType,
+  }));
 
 const performanceCards = [
   {
@@ -149,7 +90,7 @@ const performanceCards = [
   },
   {
     title: "Conversas retomadas",
-    value: "17",
+    value: String(crmLeads.filter((lead) => lead.taskType === "Follow-up" || lead.taskType === "Reengajamento").length + 10),
     description: "7 vieram de lembretes automáticos",
     icon: CheckCheck,
   },
@@ -225,7 +166,7 @@ export default function PainelPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
-            {aiInsights.map((insight) => (
+            {dashboardAiInsights.map((insight) => (
               <div
                 key={insight}
                 className="rounded-[1.5rem] border border-emerald-100 bg-emerald-50/70 px-4 py-4 text-sm leading-6 text-slate-700"
@@ -430,7 +371,7 @@ export default function PainelPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-3 lg:grid-cols-2">
-            {activityFeed.map((item) => (
+            {dashboardActivityFeed.map((item) => (
               <div
                 key={item.title}
                 className="rounded-[1.5rem] border border-slate-200/80 bg-white p-4 shadow-sm"
